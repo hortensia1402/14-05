@@ -26,21 +26,6 @@ overflow:hidden;
 font-family:'Press Start 2P', cursive;
 }
 
-body::after{
-content:"";
-position:fixed;
-inset:0;
-background:
-repeating-linear-gradient(
-to bottom,
-rgba(255,255,255,0.03),
-rgba(255,255,255,0.03) 1px,
-transparent 1px,
-transparent 3px
-);
-pointer-events:none;
-}
-
 .screen{
 width:100%;
 height:100vh;
@@ -50,8 +35,8 @@ display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-text-align:center;
 padding:30px;
+text-align:center;
 }
 
 .hidden{
@@ -62,15 +47,6 @@ display:none;
 white-space:pre-line;
 line-height:2;
 max-width:900px;
-text-shadow:0 0 10px white;
-font-size:1rem;
-}
-
-.big{
-white-space:pre-line;
-line-height:2;
-font-family:'Quicksand', sans-serif;
-font-size:1.1rem;
 }
 
 .cursor{
@@ -83,33 +59,14 @@ animation:blink 1s infinite;
 100%{opacity:1;}
 }
 
-.input-box{
-margin-top:40px;
-display:flex;
-flex-direction:column;
-gap:20px;
-align-items:center;
-}
-
-input{
-width:320px;
-padding:15px;
-border:3px solid white;
-background:black;
-color:white;
-text-align:center;
-font-family:'Press Start 2P', cursive;
-outline:none;
-}
-
 button{
 padding:15px 30px;
 border:3px solid white;
 background:black;
 color:white;
-cursor:pointer;
 font-family:'Press Start 2P', cursive;
-transition:0.3s;
+cursor:pointer;
+margin-top:20px;
 }
 
 button:hover{
@@ -117,36 +74,48 @@ background:white;
 color:black;
 }
 
-.error{
-margin-top:10px;
-font-size:0.7rem;
+input{
+padding:15px;
+border:3px solid white;
+background:black;
+color:white;
+font-family:'Press Start 2P', cursive;
+width:320px;
+text-align:center;
+margin-top:20px;
 }
 
 .progress-container{
-width:400px;
-height:30px;
+width:100%;
+height:25px;
 border:3px solid white;
-margin-top:40px;
+margin-top:20px;
 overflow:hidden;
 }
 
 .progress-bar{
-width:0%;
 height:100%;
+width:0%;
 background:white;
 transition:0.3s;
 }
 
-.popup{
+.content{
+background:rgba(255,192,203,0.15);
+border:3px solid rgba(255,255,255,0.3);
+backdrop-filter:blur(8px);
+padding:35px;
+border-radius:25px;
+width:95%;
+max-width:950px;
+position:relative;
+z-index:2;
+}
+
+.overlay{
 position:absolute;
-width:280px;
-background:black;
-border:3px solid white;
-padding:30px;
-left:50%;
-top:50%;
-transform:translate(-50%,-50%);
-box-shadow:0 0 20px white;
+inset:0;
+background:rgba(0,0,0,0.3);
 }
 
 .emotional{
@@ -155,39 +124,28 @@ background-position:center;
 background-repeat:no-repeat;
 }
 
-.overlay{
-position:absolute;
-inset:0;
-background:rgba(0,0,0,0.3);
-backdrop-filter:blur(2px);
+.girl-gif{
+width:240px;
+border-radius:20px;
+margin-bottom:25px;
 }
 
-.content{
-position:relative;
-z-index:2;
-background:rgba(255,182,193,0.15);
-border:3px solid rgba(255,255,255,0.4);
-padding:40px;
-border-radius:30px;
-backdrop-filter:blur(10px);
-width:90%;
-max-width:900px;
-}
-
-.cute-title{
-font-size:2rem;
-margin-bottom:50px;
+.big{
+white-space:pre-line;
+line-height:2;
+font-size:1rem;
 font-family:'Quicksand', sans-serif;
 }
 
 .cute-menu{
 display:flex;
 flex-direction:column;
-gap:30px;
+gap:25px;
+margin-top:30px;
 }
 
 .cute-item{
-font-size:1.5rem;
+font-size:1.4rem;
 font-family:'Quicksand', sans-serif;
 cursor:pointer;
 transition:0.3s;
@@ -195,12 +153,6 @@ transition:0.3s;
 
 .cute-item:hover{
 transform:scale(1.05);
-}
-
-.girl-gif{
-width:240px;
-border-radius:20px;
-margin-bottom:30px;
 }
 
 .heart{
@@ -219,167 +171,46 @@ transform:translateY(-120vh);
 }
 }
 
+#analysisLoadingScreen .content{
+height:80vh;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+overflow:hidden;
+}
+
+#analysisLoadingText{
+white-space:pre-line;
+overflow-y:auto;
+line-height:2;
+padding-right:10px;
+height:100%;
+font-size:0.9rem;
+}
+
+#analysisLoadingText::-webkit-scrollbar{
+width:8px;
+}
+
+#analysisLoadingText::-webkit-scrollbar-thumb{
+background:white;
+border-radius:10px;
+}
+
 </style>
 </head>
 
 <body>
 
-<section class="screen" id="screen1">
-<div class="typing" id="introText"></div>
-</section>
-
-<section class="screen hidden" id="screen2">
-
-<div class="typing" id="identifyText"></div>
-
-<div class="input-box">
-
-<input
-type="text"
-id="nameInput"
-placeholder="NOMBRE">
-
-<button onclick="checkName()">
-CONTINUAR
-</button>
-
-<div class="error" id="nameError"></div>
-
-</div>
-
-</section>
-
-<section class="screen hidden" id="screen3">
-
-<div class="typing" id="confirmText"></div>
-
-<br><br>
-
-<button onclick="goQuestion1()">
-CONTINUAR
-</button>
-
-</section>
-
-<section class="screen hidden" id="screen4">
-
-<div class="typing" id="question1"></div>
-
-<div class="input-box">
-
-<input type="text" id="answer1">
-
-<button onclick="checkAnswer1()">
-CONFIRMAR
-</button>
-
-<div class="error" id="error1"></div>
-
-</div>
-
-</section>
-
-<section class="screen hidden" id="screen5">
-
-<div class="typing" id="question2"></div>
-
-<div class="input-box">
-
-<input type="text" id="answer2">
-
-<button onclick="checkAnswer2()">
-CONFIRMAR
-</button>
-
-<div class="error" id="error2"></div>
-
-</div>
-
-</section>
-
-<section class="screen hidden" id="screen6">
-
-<div class="typing" id="question3"></div>
-
-<div class="input-box">
-
-<input type="text" id="answer3">
-
-<button onclick="checkAnswer3()">
-CONFIRMAR
-</button>
-
-<div class="error" id="error3"></div>
-
-</div>
-
-</section>
-
-<section class="screen hidden" id="loadingMenuScreen">
-
-<div class="typing" id="loadingMenuText"></div>
-
-<div class="progress-container">
-<div class="progress-bar" id="progressBar"></div>
-</div>
-
-</section>
-
-<section class="screen hidden" id="errorScreen"></section>
-
-<section class="screen hidden" id="crisisScreen">
-
-<div class="typing" id="crisisText"></div>
-
-<br><br>
-
-<button onclick="updateSystem()">
-ACTUALIZAR
-</button>
-
-</section>
-
-<section class="screen hidden emotional" id="updatingScreen">
+<section class="screen emotional" id="menuScreen">
 
 <div class="overlay"></div>
 
 <div class="content">
 
-<div class="typing" id="updatingText"></div>
-
-<div class="progress-container">
-<div class="progress-bar" id="updateBar"></div>
-</div>
-
-</div>
-
-</section>
-
-<section class="screen emotional hidden" id="girlScreen">
-
-<div class="overlay"></div>
-
-<div class="content">
-
-<img
-src="https://media.tenor.com/owSXAc8yVpAAAAAj/milk-and-mocha-kiss-cheek.gif"
-class="girl-gif">
-
-<div class="big" id="girlText"></div>
-
-</div>
-
-</section>
-
-<section class="screen emotional hidden" id="menuScreen">
-
-<div class="overlay"></div>
-
-<div class="content">
-
-<div class="cute-title">
+<h1 style="margin-bottom:30px;">
 Espacio de novio
-</div>
+</h1>
 
 <div class="cute-menu">
 
@@ -425,8 +256,6 @@ class="girl-gif">
 
 <div class="big" id="analysisResultText"></div>
 
-<br><br>
-
 <button onclick="backMenu()">
 VOLVER
 </button>
@@ -445,18 +274,16 @@ VOLVER
 Ingrese fecha:
 </div>
 
-<div class="input-box">
-
 <input
 type="text"
 id="dateInput"
 placeholder="14/05/2026">
 
+<br>
+
 <button onclick="checkDate()">
 ABRIR
 </button>
-
-</div>
 
 </div>
 
@@ -475,8 +302,6 @@ class="girl-gif">
 
 <div class="big" id="messageText"></div>
 
-<br><br>
-
 <button onclick="backMenu()">
 VOLVER
 </button>
@@ -487,12 +312,55 @@ VOLVER
 
 <script>
 
-let userName = "Alex";
-let errors = 0;
+/* FONDO */
+
+const fondo =
+"https://media1.tenor.com/m/F5sQ-3KwDIMAAAAC/powerpuff-girls-aesthetic-hearts.gif";
+
+document.body.style.backgroundImage =
+`url('${fondo}')`;
+
+document.body.style.backgroundSize =
+"cover";
+
+document.body.style.backgroundPosition =
+"center";
+
+document.querySelectorAll(".emotional")
+.forEach(screen=>{
+
+screen.style.backgroundImage =
+`url('${fondo}')`;
+
+});
+
+/* CORAZONES */
+
+for(let i=0;i<35;i++){
+
+const heart =
+document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML = "❤";
+
+heart.style.left =
+Math.random()*100 + "vw";
+
+heart.style.fontSize =
+(10 + Math.random()*25) + "px";
+
+heart.style.animationDuration =
+(5 + Math.random()*10) + "s";
+
+document.body.appendChild(heart);
+
+}
 
 /* TYPEWRITER */
 
-function typeWriter(id,text,speed=40){
+function typeWriter(id,text,speed=20){
 
 const element =
 document.getElementById(id);
@@ -510,6 +378,9 @@ text.substring(0,i+1) +
 '<span class="cursor">█</span>';
 
 i++;
+
+element.scrollTop =
+element.scrollHeight;
 
 setTimeout(typing,speed);
 
@@ -539,486 +410,6 @@ document
 
 }
 
-/* INICIO */
-
-window.onload = function(){
-
-typeWriter(
-"introText",
-`hola
-
-bienvenido al sistema operativo de Hortensia`,
-70
-);
-
-setTimeout(()=>{
-
-changeScreen(
-"screen1",
-"screen2"
-);
-
-typeWriter(
-"identifyText",
-"por favor identificate.",
-50
-);
-
-},6000);
-
-}
-
-/* LOGIN */
-
-function checkName(){
-
-const value =
-document
-.getElementById("nameInput")
-.value
-.toLowerCase()
-.trim();
-
-const names = [
-"alex",
-"alexin",
-"anto",
-"antorchita"
-];
-
-if(names.includes(value)){
-
-userName = value;
-
-changeScreen(
-"screen2",
-"screen3"
-);
-
-typeWriter(
-"confirmText",
-`para confirmar que eres ${value}, responde las siguientes preguntas.`,
-40
-);
-
-}else{
-
-document
-.getElementById("nameError")
-.innerHTML =
-"ERROR: usuario no identificado";
-
-}
-
-}
-
-/* PREGUNTA 1 */
-
-function goQuestion1(){
-
-changeScreen(
-"screen3",
-"screen4"
-);
-
-typeWriter(
-"question1",
-"¿Qué cosa en forma de osito adoptaste como mascota?",
-40
-);
-
-}
-
-function checkAnswer1(){
-
-const value =
-document
-.getElementById("answer1")
-.value
-.toLowerCase()
-.trim();
-
-if(
-
-value === "papa" ||
-value === "papá" ||
-value === "una papa"
-
-){
-
-changeScreen(
-"screen4",
-"screen5"
-);
-
-typeWriter(
-"question2",
-"¿Cómo se llama tu mascota?",
-40
-);
-
-}else{
-
-document
-.getElementById("error1")
-.innerHTML =
-"ERROR";
-
-}
-
-}
-
-/* PREGUNTA 2 */
-
-function checkAnswer2(){
-
-const value =
-document
-.getElementById("answer2")
-.value
-.toLowerCase()
-.trim();
-
-if(value === "kimmy"){
-
-changeScreen(
-"screen5",
-"screen6"
-);
-
-typeWriter(
-"question3",
-"Quiero llenarte de leche los...",
-40
-);
-
-}else{
-
-document
-.getElementById("error2")
-.innerHTML =
-"ERROR";
-
-}
-
-}
-
-/* PREGUNTA 3 */
-
-function checkAnswer3(){
-
-const value =
-document
-.getElementById("answer3")
-.value
-.toLowerCase()
-.trim();
-
-if(
-value === "fideos" ||
-value === "los fideos"
-){
-
-enteringSequence();
-
-}else{
-
-document
-.getElementById("error3")
-.innerHTML =
-"ERROR";
-
-}
-
-}
-
-/* CARGANDO */
-
-function enteringSequence(){
-
-changeScreen(
-"screen6",
-"loadingMenuScreen"
-);
-
-typeWriter(
-"loadingMenuText",
-"Iniciando sesión...",
-50
-);
-
-const bar =
-document.getElementById("progressBar");
-
-bar.style.width = "0%";
-
-let width = 0;
-
-const interval = setInterval(()=>{
-
-width += 2;
-
-bar.style.width =
-width + "%";
-
-if(width >= 100){
-
-clearInterval(interval);
-
-setTimeout(()=>{
-startErrors();
-},1000);
-
-}
-
-},80);
-
-}
-
-/* ERRORES */
-
-function startErrors(){
-
-changeScreen(
-"loadingMenuScreen",
-"errorScreen"
-);
-
-spawnError();
-
-}
-
-function spawnError(){
-
-const popup =
-document.createElement("div");
-
-popup.classList.add("popup");
-
-popup.innerHTML = `
-<div style="margin-bottom:20px;">
-ERROR DEL SISTEMA
-</div>
-
-<button onclick="closeError(this)">
-OK
-</button>
-`;
-
-document
-.getElementById("errorScreen")
-.appendChild(popup);
-
-}
-
-function closeError(button){
-
-button.parentElement.remove();
-
-errors++;
-
-if(errors < 7){
-
-changeScreen(
-"errorScreen",
-"loadingMenuScreen"
-);
-
-document
-.getElementById("progressBar")
-.style.width = "0%";
-
-typeWriter(
-"loadingMenuText",
-"Iniciando sesión...",
-40
-);
-
-let width = 0;
-
-const interval = setInterval(()=>{
-
-width += 10;
-
-document
-.getElementById("progressBar")
-.style.width =
-width + "%";
-
-if(width >= 100){
-
-clearInterval(interval);
-
-setTimeout(()=>{
-
-changeScreen(
-"loadingMenuScreen",
-"errorScreen"
-);
-
-spawnError();
-
-},700);
-
-}
-
-},60);
-
-}else{
-
-setTimeout(()=>{
-
-changeScreen(
-"errorScreen",
-"crisisScreen"
-);
-
-typeWriter(
-"crisisText",
-`⚠️ inicio de sesión de ${userName} detectado
-
-La interfaz debe actualizarse`,
-50
-);
-
-},500);
-
-}
-
-}
-
-/* ACTUALIZAR */
-
-function updateSystem(){
-
-changeScreen(
-"crisisScreen",
-"updatingScreen"
-);
-
-document.querySelector(
-"#updatingScreen .progress-container"
-).style.display = "block";
-
-typeWriter(
-"updatingText",
-"actualizando sistema...",
-50
-);
-
-const bar =
-document.getElementById("updateBar");
-
-bar.style.width = "0%";
-
-let width = 0;
-
-const interval = setInterval(()=>{
-
-width += 2;
-
-bar.style.width =
-width + "%";
-
-if(width >= 100){
-
-clearInterval(interval);
-
-const fondo =
-"https://media1.tenor.com/m/F5sQ-3KwDIMAAAAC/powerpuff-girls-aesthetic-hearts.gif";
-
-document.body.style.backgroundImage =
-`url('${fondo}')`;
-
-document.body.style.backgroundSize =
-"cover";
-
-document.body.style.backgroundPosition =
-"center";
-
-document.body.style.backgroundRepeat =
-"no-repeat";
-
-document.querySelectorAll(".emotional")
-.forEach(screen=>{
-
-screen.style.backgroundImage =
-`url('${fondo}')`;
-
-});
-
-/* OCULTAR TEXTO */
-
-document.getElementById(
-"updatingText"
-).innerHTML = "";
-
-document.querySelector(
-"#updatingScreen .progress-container"
-).style.display = "none";
-
-/* SOLO FONDO */
-
-setTimeout(()=>{
-
-changeScreen(
-"updatingScreen",
-"girlScreen"
-);
-
-typeWriter(
-"girlText",
-"Bienvenido Alexin de mi amor*-*",
-60
-);
-
-setTimeout(()=>{
-
-changeScreen(
-"girlScreen",
-"menuScreen"
-);
-
-createHearts();
-
-},5000);
-
-},1000);
-
-}
-
-},80);
-
-}
-
-/* CORAZONES */
-
-function createHearts(){
-
-for(let i=0;i<35;i++){
-
-const heart =
-document.createElement("div");
-
-heart.classList.add("heart");
-
-heart.innerHTML = "❤";
-
-heart.style.left =
-Math.random()*100 + "vw";
-
-heart.style.fontSize =
-(10 + Math.random()*25) + "px";
-
-heart.style.animationDuration =
-(5 + Math.random()*10) + "s";
-
-document.body.appendChild(heart);
-
-}
-
-}
-
 /* ANALISIS */
 
 const analysisSteps = [
@@ -1026,46 +417,55 @@ const analysisSteps = [
 `[0%] Iniciando análisis emocional...`,
 
 `[2%] Cargando recuerdos importantes...
+
 ✔ Primeras conversaciones encontradas
 ✔ Cosas que le gustan a Alex encontradas
 ✔ Datos randoms sobre Alex encontrados`,
 
 `[6%] Escaneando interacciones diarias...
+
 ✔ Mensajes
 ✔ Juegos
 ✔ Llamadas...`,
 
 `[11%] Analizando llamadas nocturnas...
+
 ✔ Compartir que hicieron en sus día
 ✔ Decirse cuanto se aman`,
 
 `[15%] Detectando efectos de su voz...
+
 ✔ Tranquilidad inmediata encontrada
 ✔ Disminucion de niveles de ansiedad al escucharlo`,
 
 `[21%] Escaneando emociones actuales...
+
 ✔ La usuaria se siente amada
 ✔ La usuaria se siente respetada
 ✔ La usuaria se siente comprendida
 ✔ La usuaria se siente escuchada`,
 
 `[29%] Revisando actividad emocional reciente...
+
 ✔ Sonrisas involuntarias registradas después de cada llamada
 
 > Tiempo compartido genera felicidad`,
 
 `[34%] Detectando muestras de cariño...
+
 ✔ Besos enviados correctamente recibidos
 ✔ Palabras y frases de amor correctamente atesoradas
 ✔ Reacción emocional positiva extremadamente alta`,
 
 `[40%] Escaneando galería emocional...
+
 ✔ Fotos de su carita encontradas
-✔ Videos de besos encontrados
+✔ Videos de Besos encontrados
 
 > El sistema detectó ternura excesiva`,
 
 `[48%] Analizando percepción del sujeto...
+
 Resultado encontrado:
 
 “hermoso”
@@ -1084,11 +484,13 @@ Resultado encontrado:
 “Inigualable”`,
 
 `[56%] Escaneando recuerdos antes de dormir...
+
 ✔ Canciones para mimir detectadas
 
 > La usuaria se duerme sonriendo frecuentemente`,
 
 `[64%] Analizando dependencia afectiva...
+
 ✔ Necesidad frecuente de escuchar su voz encontrada
 ✔ Pensamientos constantes detectados`,
 
@@ -1097,12 +499,14 @@ Resultado encontrado:
 > En aumento constante`,
 
 `[81%] Detectando amenazas...
+
 ⚠ Distancia física presente
 
 Estado:
 No afecta la conexión emocional`,
 
 `[89%] Ejecutando revisión final...
+
 ✔ Relación estable emocionalmente
 ✔ Niveles altos de cariño y confianza`,
 
@@ -1177,6 +581,9 @@ content.substring(0,i+1) +
 '<span class="cursor">█</span>';
 
 i++;
+
+text.scrollTop =
+text.scrollHeight;
 
 setTimeout(write,15);
 
@@ -1288,7 +695,7 @@ function backMenu(){
 const screens = [
 
 "analysisLoadingScreen",
-"analysisResultScreen",
+isResultScreen",
 "messageDateScreen",
 "messageResultScreen"
 
@@ -1311,4 +718,4 @@ document
 </script>
 
 </body>
- </html>
+</html>
