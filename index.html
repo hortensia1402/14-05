@@ -467,7 +467,7 @@ class="girl-gif">
 
 <div class="content">
 
-<h1 class="cute-title" id="menuTitle">
+<h1 class="cute-title">
 Espacio de novio
 </h1>
 
@@ -476,8 +476,6 @@ Espacio de novio
 <div class="cute-item" onclick="openAnalysis()">
 Analisis de sentimientos
 </div>
-
-
 
 <div class="cute-item" onclick="openMessage()">
 Mensaje para hoy
@@ -529,27 +527,7 @@ VOLVER
 
 </section>
 
-<!-- ESTADO -->
 
-<section class="screen emotional hidden" id="statusScreen">
-
-<div class="overlay"></div>
-
-<div class="content">
-
-<img
-src="https://64.media.tumblr.com/8a41368b15932bafcaab0b69a3843c5c/cbc89180cadf1e00-b3/s400x600/735c6d80961dd6fc2ab99e6593e7879dc9e8d757.gifv"
-class="girl-gif">
-
-<div class="big" id="statusText"></div>
-
-<button onclick="backMenu()">
-VOLVER
-</button>
-
-</div>
-
-</section>
 
 <!-- FECHA -->
 
@@ -936,6 +914,41 @@ if(errorCount < 7){
 
 spawnError();
 
+setTimeout(()=>{
+
+const container =
+document.getElementById("errorScreen");
+
+container.innerHTML = "";
+
+spawnError();
+
+},700);
+
+}else{
+
+setTimeout(()=>{
+
+changeScreen(
+"errorScreen",
+"crisisScreen"
+);
+
+typeWriter(
+"crisisText",
+
+`⚠️
+se detectó el inicio de sesión de ${userName},
+
+la interfaz debe ser actualizada...`,
+
+50
+);
+
+},500);
+
+}
+
 }else{
 
 setTimeout(()=>{
@@ -984,36 +997,54 @@ const interval = setInterval(()=>{
 
 width += 2;
 
-bar.style.width = width + "%";
+bar.style.width =
+width + "%";
 
 if(width >= 100){
 
 clearInterval(interval);
 
-activateCuteMode(false);
+activateCuteMode();
 
 setTimeout(()=>{
 
 changeScreen(
 "updatingScreen",
-"loadingMenuScreen"
+"girlScreen"
 );
 
+document.querySelector("#girlScreen .girl-gif")
+.style.animation = "none";
+
+setTimeout(()=>{
+createHearts();
+},1200);
+
+setTimeout(()=>{
+
 typeWriter(
-"loadingMenuText",
-"Iniciando sesión...",
-50
+"girlText",
+`Bienvenido ${userName} de mi amor*-*`,
+60
 );
+
+},2200);
 
 setTimeout(()=>{
 
 changeScreen(
-"loadingMenuScreen",
-"girlScreen"
+"girlScreen",
+"menuScreen"
 );
 
-setTimeout(()=>{
-createHearts();
+},6500);
+
+},800);
+
+}
+
+},80);
+
 },800);
 
 typeWriter(
@@ -1105,7 +1136,6 @@ const screens = [
 "menuScreen",
 "analysisLoadingScreen",
 "analysisResultScreen",
-"statusScreen",
 "messageDateScreen",
 "messageResultScreen"
 ];
@@ -1437,4 +1467,4 @@ document
 </script>
 
 </body>
-</html>
+    </html>
