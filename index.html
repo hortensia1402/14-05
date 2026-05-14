@@ -29,11 +29,8 @@ body{
 }
 
 body::after{
-
     content:"";
-
     position:fixed;
-
     inset:0;
 
     background:
@@ -49,12 +46,10 @@ body::after{
 }
 
 .screen{
-
     width:100%;
     height:100vh;
 
     position:absolute;
-
     inset:0;
 
     display:flex;
@@ -74,27 +69,17 @@ body::after{
 }
 
 .typing{
-
     white-space:pre-line;
-
     line-height:2;
-
     max-width:900px;
-
-    text-shadow:
-    0 0 10px white;
-
+    text-shadow:0 0 10px white;
     font-size:1rem;
 }
 
 .big{
-
     white-space:pre-line;
-
     line-height:2;
-
     font-family:'Quicksand', sans-serif;
-
     font-size:1.1rem;
 }
 
@@ -115,7 +100,6 @@ body::after{
     margin-top:40px;
 
     display:flex;
-
     flex-direction:column;
 
     gap:20px;
@@ -160,15 +144,12 @@ button{
 }
 
 button:hover{
-
     background:white;
     color:black;
 }
 
 .error{
-
     margin-top:10px;
-
     font-size:0.7rem;
 }
 
@@ -213,8 +194,7 @@ button:hover{
 
     transform:translate(-50%,-50%);
 
-    box-shadow:
-    0 0 20px white;
+    box-shadow:0 0 20px white;
 }
 
 .emotional{
@@ -230,8 +210,7 @@ button:hover{
 
     inset:0;
 
-    background:
-    rgba(0,0,0,0.3);
+    background:rgba(0,0,0,0.3);
 
     backdrop-filter:blur(2px);
 }
@@ -362,9 +341,7 @@ button:hover{
 <body>
 
 <section class="screen" id="screen1">
-
     <div class="typing" id="introText"></div>
-
 </section>
 
 <section class="screen hidden" id="screen2">
@@ -397,6 +374,146 @@ button:hover{
     <button onclick="goQuestion1()">
         CONTINUAR
     </button>
+
+</section>
+
+<section class="screen hidden" id="screen4">
+
+    <div class="typing" id="question1"></div>
+
+    <div class="input-box">
+
+        <input type="text" id="answer1">
+
+        <button onclick="checkAnswer1()">
+            CONFIRMAR
+        </button>
+
+        <div class="error" id="error1"></div>
+
+    </div>
+
+</section>
+
+<section class="screen hidden" id="screen5">
+
+    <div class="typing" id="question2"></div>
+
+    <div class="input-box">
+
+        <input type="text" id="answer2">
+
+        <button onclick="checkAnswer2()">
+            CONFIRMAR
+        </button>
+
+        <div class="error" id="error2"></div>
+
+    </div>
+
+</section>
+
+<section class="screen hidden" id="screen6">
+
+    <div class="typing" id="question3"></div>
+
+    <div class="input-box">
+
+        <input type="text" id="answer3">
+
+        <button onclick="checkAnswer3()">
+            CONFIRMAR
+        </button>
+
+        <div class="error" id="error3"></div>
+
+    </div>
+
+</section>
+
+<section class="screen hidden" id="loadingMenuScreen">
+
+    <div class="typing" id="loadingMenuText"></div>
+
+    <div class="progress-container">
+
+        <div class="progress-bar" id="progressBar"></div>
+
+    </div>
+
+</section>
+
+<section class="screen hidden" id="errorScreen"></section>
+
+<section class="screen hidden" id="crisisScreen">
+
+    <div class="typing" id="crisisText"></div>
+
+    <br><br>
+
+    <button onclick="updateSystem()">
+        ACTUALIZAR
+    </button>
+
+</section>
+
+<section class="screen hidden" id="updatingScreen">
+
+    <div class="typing" id="updatingText"></div>
+
+    <div class="progress-container">
+
+        <div class="progress-bar" id="updateBar"></div>
+
+    </div>
+
+</section>
+
+<section class="screen emotional hidden" id="girlScreen">
+
+    <div class="overlay"></div>
+
+    <div class="content">
+
+        <img
+        src="https://media.tenor.com/owSXAc8yVpAAAAAj/milk-and-mocha-kiss-cheek.gif"
+        class="girl-gif">
+
+        <div class="big" id="girlText"></div>
+
+    </div>
+
+</section>
+
+<section class="screen emotional hidden" id="menuScreen">
+
+    <div class="overlay"></div>
+
+    <div class="content">
+
+        <div class="cute-title" id="menuTitle">
+            Espacio de novio
+        </div>
+
+        <div class="cute-menu">
+
+            <div class="cute-item"
+            onclick="openAnalysis()">
+
+                Analisis de sentimientos
+
+            </div>
+
+            <div class="cute-item"
+            onclick="openMessage()">
+
+                Mensaje para hoy
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -518,11 +635,349 @@ function checkName(){
 
 function goQuestion1(){
 
-    alert("ACÁ SIGUE EL RESTO DEL CÓDIGO");
+    changeScreen(
+        "screen3",
+        "screen4"
+    );
+
+    typeWriter(
+        "question1",
+        "¿Qué cosa en forma de osito adoptaste como mascota?",
+        40
+    );
+
+}
+
+function checkAnswer1(){
+
+    const value =
+    document
+    .getElementById("answer1")
+    .value
+    .toLowerCase()
+    .trim();
+
+    if(
+        value === "papa" ||
+        value === "papá"
+    ){
+
+        changeScreen(
+            "screen4",
+            "screen5"
+        );
+
+        typeWriter(
+            "question2",
+            "¿Cómo se llama tu mascota?",
+            40
+        );
+
+    }else{
+
+        document
+        .getElementById("error1")
+        .innerHTML = "ERROR";
+
+    }
+
+}
+
+function checkAnswer2(){
+
+    const value =
+    document
+    .getElementById("answer2")
+    .value
+    .toLowerCase()
+    .trim();
+
+    if(value === "kimmy"){
+
+        changeScreen(
+            "screen5",
+            "screen6"
+        );
+
+        typeWriter(
+            "question3",
+            "Quiero llenarte de leche los...",
+            40
+        );
+
+    }else{
+
+        document
+        .getElementById("error2")
+        .innerHTML = "ERROR";
+
+    }
+
+}
+
+function checkAnswer3(){
+
+    const value =
+    document
+    .getElementById("answer3")
+    .value
+    .toLowerCase()
+    .trim();
+
+    if(
+        value === "fideos" ||
+        value === "los fideos"
+    ){
+
+        enteringSequence();
+
+    }else{
+
+        document
+        .getElementById("error3")
+        .innerHTML = "ERROR";
+
+    }
+
+}
+
+/* CARGA */
+
+function enteringSequence(){
+
+    changeScreen(
+        "screen6",
+        "loadingMenuScreen"
+    );
+
+    typeWriter(
+        "loadingMenuText",
+        "Iniciando sesión...",
+        50
+    );
+
+    const bar =
+    document.getElementById("progressBar");
+
+    let width = 0;
+
+    const interval = setInterval(()=>{
+
+        width += 2;
+
+        bar.style.width =
+        width + "%";
+
+        if(width >= 100){
+
+            clearInterval(interval);
+
+            setTimeout(()=>{
+                startErrors();
+            },1000);
+
+        }
+
+    },80);
+
+}
+
+/* ERRORES */
+
+let errors = 0;
+
+function startErrors(){
+
+    changeScreen(
+        "loadingMenuScreen",
+        "errorScreen"
+    );
+
+    spawnError();
+
+}
+
+function spawnError(){
+
+    const popup =
+    document.createElement("div");
+
+    popup.classList.add("popup");
+
+    popup.innerHTML = `
+    <div style="margin-bottom:20px;">
+        ERROR DEL SISTEMA
+    </div>
+
+    <button onclick="closeError(this)">
+        OK
+    </button>
+    `;
+
+    document
+    .getElementById("errorScreen")
+    .appendChild(popup);
+
+}
+
+function closeError(button){
+
+    button.parentElement.remove();
+
+    errors++;
+
+    if(errors < 7){
+
+        spawnError();
+
+    }else{
+
+        setTimeout(()=>{
+
+            changeScreen(
+                "errorScreen",
+                "crisisScreen"
+            );
+
+            typeWriter(
+                "crisisText",
+`⚠️ inicio de sesión de Alex detectado
+
+La interfaz debe actualizarse`,
+50
+            );
+
+        },500);
+
+    }
+
+}
+
+/* UPDATE */
+
+function updateSystem(){
+
+    changeScreen(
+        "crisisScreen",
+        "updatingScreen"
+    );
+
+    typeWriter(
+        "updatingText",
+        "actualizando sistema...",
+        50
+    );
+
+    const bar =
+    document.getElementById("updateBar");
+
+    let width = 0;
+
+    const interval = setInterval(()=>{
+
+        width += 2;
+
+        bar.style.width = width + "%";
+
+        if(width >= 100){
+
+            clearInterval(interval);
+
+            /* FONDO */
+
+            const fondo =
+            "https://media1.tenor.com/m/F5sQ-3KwDIMAAAAC/powerpuff-girls-aesthetic-hearts.gif";
+
+            document.body.style.backgroundImage =
+            `url('${fondo}')`;
+
+            document.body.style.backgroundSize =
+            "cover";
+
+            document.body.style.backgroundPosition =
+            "center";
+
+            document.querySelectorAll(".emotional")
+            .forEach(screen=>{
+
+                screen.style.backgroundImage =
+                `url('${fondo}')`;
+
+            });
+
+            setTimeout(()=>{
+
+                changeScreen(
+                    "updatingScreen",
+                    "girlScreen"
+                );
+
+                typeWriter(
+                    "girlText",
+                    "Bienvenido Alexin de mi amor*-*",
+                    60
+                );
+
+                setTimeout(()=>{
+
+                    changeScreen(
+                        "girlScreen",
+                        "menuScreen"
+                    );
+
+                    createHearts();
+
+                },5000);
+
+            },1000);
+
+        }
+
+    },80);
+
+}
+
+/* CORAZONES */
+
+function createHearts(){
+
+    for(let i=0;i<35;i++){
+
+        const heart =
+        document.createElement("div");
+
+        heart.classList.add("heart");
+
+        heart.innerHTML = "❤";
+
+        heart.style.left =
+        Math.random()*100 + "vw";
+
+        heart.style.fontSize =
+        (10 + Math.random()*25) + "px";
+
+        heart.style.animationDuration =
+        (5 + Math.random()*10) + "s";
+
+        document.body.appendChild(heart);
+
+    }
+
+}
+
+function openAnalysis(){
+
+    alert("ANÁLISIS");
+
+}
+
+function openMessage(){
+
+    alert("MENSAJES");
 
 }
 
 </script>
 
 </body>
-</html>
+    </html>
