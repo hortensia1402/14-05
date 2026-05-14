@@ -403,7 +403,7 @@ button:hover{
 
 .analysis-box{
 
-    min-height:420px;
+    min-height:450px;
 }
 
 @media(max-width:768px){
@@ -570,6 +570,54 @@ button:hover{
     <div class="progress-container">
 
         <div class="progress-bar" id="progressBar"></div>
+
+    </div>
+
+</section>
+
+<!-- ERRORES -->
+
+<section class="screen hidden" id="errorScreen"></section>
+
+<!-- CRISIS -->
+
+<section class="screen hidden" id="crisisScreen">
+
+    <div class="typing" id="crisisText"></div>
+
+    <button onclick="updateSystem()">
+        ACTUALIZAR
+    </button>
+
+</section>
+
+<!-- ACTUALIZANDO -->
+
+<section class="screen hidden" id="updatingScreen">
+
+    <div class="typing" id="updatingText"></div>
+
+    <div class="progress-container">
+
+        <div class="progress-bar" id="updateBar"></div>
+
+    </div>
+
+</section>
+
+<!-- BIENVENIDO -->
+
+<section class="screen emotional hidden" id="girlScreen">
+
+    <div class="overlay"></div>
+
+    <div class="content">
+
+        <img
+        src="https://media.tenor.com/owSXAc8yVpAAAAAj/milk-and-mocha-kiss-cheek.gif"
+        class="girl-gif">
+
+        <div class="cute-text" id="girlText"></div>
 
     </div>
 
@@ -956,36 +1004,179 @@ function startLoading(){
             clearInterval(interval);
 
             setTimeout(()=>{
+                startErrors();
+            },1000);
 
-                const fondo =
-                "https://media1.tenor.com/m/F5sQ-3KwDIMAAAAC/powerpuff-girls-aesthetic-hearts.gif";
+        }
 
-                document.body.style.backgroundImage =
+    },80);
+
+}
+
+/* ERRORES */
+
+let errorCount = 0;
+
+function startErrors(){
+
+    changeScreen(
+        "loadingMenuScreen",
+        "errorScreen"
+    );
+
+    spawnError();
+
+}
+
+function spawnError(){
+
+    const container =
+    document.getElementById("errorScreen");
+
+    const popup =
+    document.createElement("div");
+
+    popup.classList.add("popup");
+
+    popup.innerHTML = `
+    <div class="popup-text">
+        ERROR DEL SISTEMA
+    </div>
+
+    <button onclick="nextError(this)">
+        OK
+    </button>
+    `;
+
+    container.appendChild(popup);
+
+}
+
+function nextError(button){
+
+    button.parentElement.remove();
+
+    errorCount++;
+
+    if(errorCount < 7){
+
+        spawnError();
+
+    }else{
+
+        setTimeout(()=>{
+
+            changeScreen(
+                "errorScreen",
+                "crisisScreen"
+            );
+
+            typeWriter(
+                "crisisText",
+`⚠️
+se detectó el inicio de sesión de Alex,
+
+la interfaz debe ser actualizada...`,
+50
+            );
+
+        },500);
+
+    }
+
+}
+
+/* ACTUALIZAR */
+
+function updateSystem(){
+
+    changeScreen(
+        "crisisScreen",
+        "updatingScreen"
+    );
+
+    typeWriter(
+        "updatingText",
+        "actualizando sistema...",
+        50
+    );
+
+    const bar =
+    document.getElementById("updateBar");
+
+    let width = 0;
+
+    const interval = setInterval(()=>{
+
+        width += 2;
+
+        bar.style.width = width + "%";
+
+        if(width >= 100){
+
+            clearInterval(interval);
+
+            const fondo =
+            "https://media1.tenor.com/m/F5sQ-3KwDIMAAAAC/powerpuff-girls-aesthetic-hearts.gif";
+
+            document.body.style.backgroundImage =
+            `url('${fondo}')`;
+
+            document.body.style.backgroundSize =
+            "cover";
+
+            document.body.style.backgroundPosition =
+            "center";
+
+            document.body.style.backgroundRepeat =
+            "no-repeat";
+
+            document.querySelectorAll(".emotional")
+            .forEach(screen=>{
+
+                screen.style.backgroundImage =
                 `url('${fondo}')`;
 
-                document.body.style.backgroundSize =
+                screen.style.backgroundSize =
                 "cover";
 
-                document.querySelectorAll(".emotional")
-                .forEach(screen=>{
+                screen.style.backgroundPosition =
+                "center";
 
-                    screen.style.backgroundImage =
-                    `url('${fondo}')`;
+                screen.style.backgroundRepeat =
+                "no-repeat";
 
-                });
+            });
 
-                createHearts();
+            createHearts();
+
+            setTimeout(()=>{
 
                 changeScreen(
-                    "loadingMenuScreen",
-                    "menuScreen"
+                    "updatingScreen",
+                    "girlScreen"
                 );
 
                 typeWriter(
-                    "menuTitle",
-                    "Espacio de novio",
+                    "girlText",
+                    "Bienvenido Alexin de mi amor*-*",
                     60
                 );
+
+                setTimeout(()=>{
+
+                    changeScreen(
+                        "girlScreen",
+                        "menuScreen"
+                    );
+
+                    typeWriter(
+                        "menuTitle",
+                        "Espacio de novio",
+                        60
+                    );
+
+                },5000);
 
             },1000);
 
@@ -1039,11 +1230,21 @@ function changeScreen(hide,show){
 
 function hideAll(){
 
-    document
-    .querySelectorAll(".emotional")
-    .forEach(screen=>{
+    const screens = [
 
-        screen.classList.add("hidden");
+        "menuScreen",
+        "analysisLoadingScreen",
+        "analysisResultScreen",
+        "messageDateScreen",
+        "messageResultScreen"
+
+    ];
+
+    screens.forEach(id=>{
+
+        document
+        .getElementById(id)
+        .classList.add("hidden");
 
     });
 
@@ -1101,17 +1302,17 @@ Resultado encontrado:
 “hermoso”
 “wonito”
 “tierno”
-“Bondadoso”
+"Bondadoso"
 “amoroso”
-“Compañero”
-“Inteligente”
-“Empatico”
-“Admirable”
-“Cariñoso”
-“Único”
-“Especial”
+"Compañero"
+"Inteligente"
+"Empatico"
+"Admirable"
+"Cariñoso"
+"Único"
+"Especial"
 “Perfecto”
-“Inigualable”`,
+"Inigualable"`,
 
 `[56%] Escaneando recuerdos antes de dormir...
 ✔ Canciones para mimir detectadas
@@ -1124,7 +1325,7 @@ Resultado encontrado:
 
 `[72%] Nivel de enamoramiento ...
 
-> En aumento constante`,
+>En aumento constante`,
 
 `[81%] Detectando amenazas...
 ⚠ Distancia física presente
@@ -1231,7 +1432,7 @@ Solo amor.`,
 
 }
 
-/* MENSAJES */
+/* MENSAJE */
 
 function openMessage(){
 
@@ -1243,6 +1444,7 @@ function openMessage(){
 
 }
 
+function checkDate(){
 function checkDate(){
 
     const value =
@@ -1267,7 +1469,8 @@ function checkDate(){
     if(value === "14/05/2026"){
 
         finalText =
-`Felices 3 meses mi amor!`;
+`Felices 3 meses mi amor!
+Gracias por ser mi novio♡`;
 
         finalGif =
 "https://64.media.tumblr.com/be0cf900f283ad29b2d0a1f44c52a821/6a9c8986f837ff55-05/s400x600/c0a31febc663585b8baef79e7250c0d130350373.gif";
@@ -1319,4 +1522,4 @@ function backMenu(){
 </script>
 
 </body>
-    </html>
+        </html>
