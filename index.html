@@ -226,6 +226,10 @@ button:hover{
 
     box-shadow:
     0 0 20px white;
+
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
 }
 
 .popup-text{
@@ -235,11 +239,9 @@ button:hover{
     margin-bottom:20px;
 }
 
-/* INTERFAZ EMOCIONAL */
+/* INTERFAZ */
 
 .emotional{
-
-    background-image:url('fondo.jpg');
 
     background-size:cover;
 
@@ -265,6 +267,19 @@ button:hover{
     position:relative;
 
     z-index:2;
+
+    background:rgba(255,182,193,0.2);
+
+    border:3px solid rgba(255,255,255,0.5);
+
+    padding:50px;
+
+    border-radius:30px;
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+    0 0 30px rgba(255,255,255,0.3);
 }
 
 /* CORAZONES */
@@ -306,7 +321,7 @@ button:hover{
     0 0 30px rgba(255,255,255,0.5);
 }
 
-/* TEXTO NUEVO */
+/* TEXTO */
 
 .cute-text{
 
@@ -354,6 +369,9 @@ button:hover{
     cursor:pointer;
 
     transition:0.3s;
+
+    text-shadow:
+    0 0 10px white;
 }
 
 .cute-item:hover{
@@ -500,6 +518,29 @@ button:hover{
 
 </section>
 
+<!-- PREGUNTA 3 -->
+
+<section class="screen hidden" id="screen6">
+
+    <div class="typing" id="question3"></div>
+
+    <div class="input-box">
+
+        <input
+        type="text"
+        id="answer3"
+        placeholder="RESPUESTA">
+
+        <button onclick="checkAnswer3()">
+            CONFIRMAR
+        </button>
+
+        <div class="error" id="error3"></div>
+
+    </div>
+
+</section>
+
 <!-- INGRESANDO -->
 
 <section class="screen hidden" id="enteringScreen">
@@ -510,52 +551,14 @@ button:hover{
 
 <!-- BIENVENIDO -->
 
-<section class="screen hidden" id="welcomeScreen">
-
-    <div class="typing" id="welcomeText"></div>
-
-</section>
-
-<!-- CARGANDO MENU -->
-
-<section class="screen hidden" id="loadingMenuScreen">
-
-    <div class="typing" id="loadingMenuText"></div>
-
-    <div class="progress-container">
-
-        <div class="progress-bar" id="progressBar"></div>
-
-    </div>
-
-</section>
-
-<!-- ERRORES -->
-
-<section class="screen hidden" id="errorScreen"></section>
-
-<!-- CRISIS -->
-
-<section class="screen hidden" id="crisisScreen">
-
-    <div class="typing" id="crisisText"></div>
-
-    <button onclick="updateSystem()">
-        ACTUALIZAR
-    </button>
-
-</section>
-
-<!-- CHICA -->
-
-<section class="screen emotional hidden" id="girlScreen">
+<section class="screen hidden emotional" id="girlScreen">
 
     <div class="overlay"></div>
 
     <div class="content">
 
         <img
-        src="girl.gif"
+        src="https://media.tenor.com/owSXAc8yVpAAAAAj/milk-and-mocha-kiss-cheek.gif"
         class="girl-gif">
 
         <div class="cute-text" id="girlText"></div>
@@ -612,6 +615,10 @@ id="analysisScreen">
 
     <div class="content">
 
+        <img
+        src="https://media.tenor.com/owSXAc8yVpAAAAAj/milk-and-mocha-kiss-cheek.gif"
+        class="girl-gif">
+
         <div class="big" id="analysisText"></div>
 
         <button onclick="backMenu()">
@@ -630,6 +637,10 @@ id="statusScreen">
     <div class="overlay"></div>
 
     <div class="content">
+
+        <img
+        src="https://64.media.tumblr.com/8a41368b15932bafcaab0b69a3843c5c/cbc89180cadf1e00-b3/s400x600/735c6d80961dd6fc2ab99e6593e7879dc9e8d757.gifv"
+        class="girl-gif">
 
         <div class="big" id="statusText"></div>
 
@@ -650,11 +661,59 @@ id="messageScreen">
 
     <div class="content">
 
+        <img
+        src="https://64.media.tumblr.com/be0cf900f283ad29b2d0a1f44c52a821/6a9c8986f837ff55-05/s400x600/c0a31febc663585b8baef79e7250c0d130350373.gif"
+        class="girl-gif">
+
         <div class="big" id="messageText"></div>
 
         <button onclick="backMenu()">
             VOLVER
         </button>
+
+    </div>
+
+</section>
+
+<!-- CARGA -->
+
+<section class="screen hidden" id="loadingMenuScreen">
+
+    <div class="typing" id="loadingMenuText"></div>
+
+    <div class="progress-container">
+
+        <div class="progress-bar" id="progressBar"></div>
+
+    </div>
+
+</section>
+
+<!-- ERRORES -->
+
+<section class="screen hidden" id="errorScreen"></section>
+
+<!-- CRISIS -->
+
+<section class="screen hidden" id="crisisScreen">
+
+    <div class="typing" id="crisisText"></div>
+
+    <button onclick="updateSystem()">
+        ACTUALIZAR
+    </button>
+
+</section>
+
+<!-- ACTUALIZANDO -->
+
+<section class="screen hidden" id="updatingScreen">
+
+    <div class="typing" id="updatingText"></div>
+
+    <div class="progress-container">
+
+        <div class="progress-bar" id="updateBar"></div>
 
     </div>
 
@@ -697,8 +756,6 @@ function typeWriter(id, text, speed=40){
 
 }
 
-/* INTRO */
-
 typeWriter(
     "introText",
 `hola
@@ -718,8 +775,6 @@ setTimeout(()=>{
     );
 
 },7000);
-
-/* VALIDAR NOMBRE */
 
 let userName = "";
 
@@ -765,15 +820,13 @@ responde las siguientes preguntas.`,
 
 }
 
-/* PREGUNTAS */
-
 function goQuestion1(){
 
     changeScreen("screen3","screen4");
 
     typeWriter(
         "question1",
-        "¿Que cosa en forma de osito adoptante como mascota?",
+        "¿Que cosa en forma de osito adoptaste como mascota?",
         40
     );
 
@@ -788,7 +841,12 @@ function checkAnswer1(){
     .toLowerCase()
     .trim();
 
-    if(answer === "papa"){
+    if(
+        answer === "papa" ||
+        answer === "papá" ||
+        answer === "una papa" ||
+        answer === "una papá"
+    ){
 
         changeScreen("screen4","screen5");
 
@@ -820,7 +878,13 @@ function checkAnswer2(){
 
     if(answer === "kimmy"){
 
-        enteringSequence();
+        changeScreen("screen5","screen6");
+
+        typeWriter(
+            "question3",
+            "Quiero llenarte de leche los...",
+            40
+        );
 
     }else{
 
@@ -833,50 +897,43 @@ function checkAnswer2(){
 
 }
 
-/* INGRESANDO */
+function checkAnswer3(){
 
-function enteringSequence(){
+    const answer =
+    document
+    .getElementById("answer3")
+    .value
+    .toLowerCase()
+    .trim();
 
-    changeScreen("screen5","enteringScreen");
+    if(answer === "fideos" || answer === "los fideos"){
 
-    typeWriter(
-        "enteringText",
-        "Ingresando...",
-        60
-    );
+        enteringSequence();
 
-    setTimeout(()=>{
+    }else{
 
-        changeScreen("enteringScreen","welcomeScreen");
+        document
+        .getElementById("error3")
+        .innerHTML =
+        "ERROR: RESPUESTA INCORRECTA";
 
-        typeWriter(
-            "welcomeText",
-            `Bienvenido Alex`,
-            60
-        );
-
-    },3000);
-
-    setTimeout(()=>{
-
-        changeScreen(
-            "welcomeScreen",
-            "loadingMenuScreen"
-        );
-
-        typeWriter(
-            "loadingMenuText",
-            "cargando menu de novio...",
-            50
-        );
-
-        startLoading();
-
-    },7000);
+    }
 
 }
 
-/* BARRA */
+function enteringSequence(){
+
+    changeScreen("screen6","loadingMenuScreen");
+
+    typeWriter(
+        "loadingMenuText",
+        "cargando menu de novio...",
+        50
+    );
+
+    startLoading();
+
+}
 
 function startLoading(){
 
@@ -905,8 +962,6 @@ function startLoading(){
 
 }
 
-/* ERRORES */
-
 let errorCount = 0;
 
 function startErrors(){
@@ -930,12 +985,6 @@ function spawnError(){
 
     popup.classList.add("popup");
 
-    popup.style.left =
-    Math.random()*60 + 10 + "%";
-
-    popup.style.top =
-    Math.random()*60 + 10 + "%";
-
     popup.innerHTML = `
     <div class="popup-text">
         ERROR DEL SISTEMA
@@ -956,7 +1005,7 @@ function nextError(button){
 
     errorCount++;
 
-    if(errorCount < 14){
+    if(errorCount < 7){
 
         spawnError();
 
@@ -973,7 +1022,9 @@ function nextError(button){
                 "crisisText",
 `inicio de sesion de Alex detectado
 
-sistema operativo en crisis`,
+sistema operativo en crisis
+
+requiere actualización`,
 50
             );
 
@@ -983,41 +1034,80 @@ sistema operativo en crisis`,
 
 }
 
-/* ACTUALIZAR */
-
 function updateSystem(){
-
-    createHearts();
 
     changeScreen(
         "crisisScreen",
-        "girlScreen"
+        "updatingScreen"
     );
 
     typeWriter(
-        "girlText",
-        "hola amor ❤",
-        60
+        "updatingText",
+        "actualizando sistema...",
+        50
     );
 
-    setTimeout(()=>{
+    const bar =
+    document.getElementById("updateBar");
 
-        changeScreen(
-            "girlScreen",
-            "menuScreen"
-        );
+    let width = 0;
 
-        typeWriter(
-            "menuTitle",
-            "espacio de novio",
-            60
-        );
+    const interval = setInterval(()=>{
 
-    },5000);
+        width += 2;
+
+        bar.style.width = width + "%";
+
+        if(width >= 100){
+
+            clearInterval(interval);
+
+            document.body.style.backgroundImage =
+            "url('https://i.pinimg.com/originals/7e/65/1e/7e651e4d58bb7f0f924be4d3e6d1b4d0.jpg')";
+
+            document.body.style.backgroundSize =
+            "cover";
+
+            document.body.style.backgroundPosition =
+            "center";
+
+            createHearts();
+
+            setTimeout(()=>{
+
+                changeScreen(
+                    "updatingScreen",
+                    "girlScreen"
+                );
+
+                typeWriter(
+                    "girlText",
+                    "Bienvenido mi amor ❤",
+                    60
+                );
+
+                setTimeout(()=>{
+
+                    changeScreen(
+                        "girlScreen",
+                        "menuScreen"
+                    );
+
+                    typeWriter(
+                        "menuTitle",
+                        "espacio de novio",
+                        60
+                    );
+
+                },5000);
+
+            },1000);
+
+        }
+
+    },80);
 
 }
-
-/* CORAZONES */
 
 function createHearts(){
 
@@ -1045,8 +1135,6 @@ function createHearts(){
 
 }
 
-/* CAMBIAR PANTALLAS */
-
 function changeScreen(hide,show){
 
     document
@@ -1058,8 +1146,6 @@ function changeScreen(hide,show){
     .classList.remove("hidden");
 
 }
-
-/* MENU */
 
 function hideAll(){
 
@@ -1081,8 +1167,6 @@ function hideAll(){
 
 }
 
-/* ANALISIS */
-
 function openAnalysis(){
 
     hideAll();
@@ -1099,26 +1183,14 @@ function openAnalysis(){
 
 + sensación de calma
 
-+ pensamientos acelerados
-
 + necesidad de quedarse un rato más
 
 momento favorito del día:
-hablar con vos
-
-cuando Alex aparece:
-
-el ruido mental disminuye
-
-el tiempo pasa demasiado rápido
-
-la distancia parece un poco menos injusta`,
+hablar con vos ❤`,
 35
     );
 
 }
-
-/* ESTADO */
 
 function openStatus(){
 
@@ -1138,8 +1210,6 @@ function openStatus(){
 
 }
 
-/* MENSAJE */
-
 function openMessage(){
 
     hideAll();
@@ -1158,8 +1228,6 @@ mi amor ❤`,
 
 }
 
-/* VOLVER */
-
 function backMenu(){
 
     hideAll();
@@ -1173,5 +1241,4 @@ function backMenu(){
 </script>
 
 </body>
-
-  </html>
+</html>
