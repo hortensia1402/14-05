@@ -997,14 +997,17 @@ const interval = setInterval(()=>{
 
 width += 2;
 
-bar.style.width =
-width + "%";
+bar.style.width = width + "%";
 
 if(width >= 100){
 
 clearInterval(interval);
 
+/* ACTIVAR FONDO */
+
 activateCuteMode();
+
+/* MOSTRAR PANTALLA FINAL */
 
 setTimeout(()=>{
 
@@ -1013,11 +1016,56 @@ changeScreen(
 "girlScreen"
 );
 
-document.querySelector("#girlScreen .girl-gif")
-.style.animation = "none";
+/* ASEGURAR FONDO */
+
+document.getElementById("girlScreen").style.backgroundImage =
+`url('${fondo}')`;
+
+/* GIF QUIETO */
+
+const gif = document.querySelector("#girlScreen .girl-gif");
+
+gif.style.opacity = "1";
+
+gif.style.transform = "none";
+
+gif.style.animation = "none";
+
+/* CORAZONES */
 
 setTimeout(()=>{
 createHearts();
+},1200);
+
+/* TEXTO */
+
+setTimeout(()=>{
+
+typeWriter(
+"girlText",
+`Bienvenido ${userName} de mi amor*-*`,
+60
+);
+
+},2200);
+
+/* MENU */
+
+setTimeout(()=>{
+
+changeScreen(
+"girlScreen",
+"menuScreen"
+);
+
+},6500);
+
+},500);
+
+}
+
+},80);
+
 },1200);
 
 setTimeout(()=>{
@@ -1467,4 +1515,4 @@ document
 </script>
 
 </body>
-    </html>
+</html>
