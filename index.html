@@ -28,8 +28,6 @@ body{
     font-family:'Press Start 2P', cursive;
 }
 
-/* CRT */
-
 body::after{
 
     content:"";
@@ -49,8 +47,6 @@ body::after{
 
     pointer-events:none;
 }
-
-/* PANTALLAS */
 
 .screen{
 
@@ -76,8 +72,6 @@ body::after{
 .hidden{
     display:none;
 }
-
-/* TEXTOS */
 
 .typing{
 
@@ -116,8 +110,6 @@ body::after{
 
 }
 
-/* INPUTS */
-
 .input-box{
 
     margin-top:40px;
@@ -150,8 +142,6 @@ input{
     outline:none;
 }
 
-/* BOTONES */
-
 button{
 
     padding:15px 30px;
@@ -175,16 +165,12 @@ button:hover{
     color:black;
 }
 
-/* ERRORES */
-
 .error{
 
     margin-top:10px;
 
     font-size:0.7rem;
 }
-
-/* BARRAS */
 
 .progress-container{
 
@@ -210,8 +196,6 @@ button:hover{
     transition:0.3s;
 }
 
-/* POPUPS */
-
 .popup{
 
     position:absolute;
@@ -232,8 +216,6 @@ button:hover{
     box-shadow:
     0 0 20px white;
 }
-
-/* TEMA ROSA */
 
 .emotional{
 
@@ -275,8 +257,6 @@ button:hover{
     max-width:900px;
 }
 
-/* MENU */
-
 .cute-title{
 
     font-size:2rem;
@@ -310,8 +290,6 @@ button:hover{
     transform:scale(1.05);
 }
 
-/* GIF */
-
 .girl-gif{
 
     width:240px;
@@ -320,8 +298,6 @@ button:hover{
 
     margin-bottom:30px;
 }
-
-/* CORAZONES */
 
 .heart{
 
@@ -385,15 +361,11 @@ button:hover{
 
 <body>
 
-<!-- INTRO -->
-
 <section class="screen" id="screen1">
 
     <div class="typing" id="introText"></div>
 
 </section>
-
-<!-- LOGIN -->
 
 <section class="screen hidden" id="screen2">
 
@@ -416,8 +388,6 @@ button:hover{
 
 </section>
 
-<!-- CONTINUAR -->
-
 <section class="screen hidden" id="screen3">
 
     <div class="typing" id="confirmText"></div>
@@ -430,269 +400,7 @@ button:hover{
 
 </section>
 
-<!-- PREGUNTA 1 -->
-
-<section class="screen hidden" id="screen4">
-
-    <div class="typing" id="question1"></div>
-
-    <div class="input-box">
-
-        <input type="text" id="answer1">
-
-        <button onclick="checkAnswer1()">
-            CONFIRMAR
-        </button>
-
-        <div class="error" id="error1"></div>
-
-    </div>
-
-</section>
-
-<!-- PREGUNTA 2 -->
-
-<section class="screen hidden" id="screen5">
-
-    <div class="typing" id="question2"></div>
-
-    <div class="input-box">
-
-        <input type="text" id="answer2">
-
-        <button onclick="checkAnswer2()">
-            CONFIRMAR
-        </button>
-
-        <div class="error" id="error2"></div>
-
-    </div>
-
-</section>
-
-<!-- PREGUNTA 3 -->
-
-<section class="screen hidden" id="screen6">
-
-    <div class="typing" id="question3"></div>
-
-    <div class="input-box">
-
-        <input type="text" id="answer3">
-
-        <button onclick="checkAnswer3()">
-            CONFIRMAR
-        </button>
-
-        <div class="error" id="error3"></div>
-
-    </div>
-
-</section>
-
-<!-- CARGA -->
-
-<section class="screen hidden" id="loadingMenuScreen">
-
-    <div class="typing" id="loadingMenuText"></div>
-
-    <div class="progress-container">
-
-        <div class="progress-bar" id="progressBar"></div>
-
-    </div>
-
-</section>
-
-<!-- ERRORES -->
-
-<section class="screen hidden" id="errorScreen"></section>
-
-<!-- ALERTA -->
-
-<section class="screen hidden" id="crisisScreen">
-
-    <div class="typing" id="crisisText"></div>
-
-    <br><br>
-
-    <button onclick="updateSystem()">
-        ACTUALIZAR
-    </button>
-
-</section>
-
-<!-- UPDATE -->
-
-<section class="screen hidden" id="updatingScreen">
-
-    <div class="typing" id="updatingText"></div>
-
-    <div class="progress-container">
-
-        <div class="progress-bar" id="updateBar"></div>
-
-    </div>
-
-</section>
-
-<!-- BIENVENIDA -->
-
-<section class="screen emotional hidden" id="girlScreen">
-
-    <div class="overlay"></div>
-
-    <div class="content">
-
-        <img
-        src="https://media.tenor.com/owSXAc8yVpAAAAAj/milk-and-mocha-kiss-cheek.gif"
-        class="girl-gif">
-
-        <div class="big" id="girlText"></div>
-
-    </div>
-
-</section>
-
-<!-- MENU -->
-
-<section class="screen emotional hidden" id="menuScreen">
-
-    <div class="overlay"></div>
-
-    <div class="content">
-
-        <div class="cute-title">
-            Espacio de novio
-        </div>
-
-        <div class="cute-menu">
-
-            <div class="cute-item"
-            onclick="openAnalysis()">
-
-                Analisis de sentimientos
-
-            </div>
-
-            <div class="cute-item"
-            onclick="openMessage()">
-
-                Mensaje para hoy
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ANALISIS -->
-
-<section class="screen emotional hidden"
-id="analysisLoadingScreen">
-
-    <div class="overlay"></div>
-
-    <div class="content">
-
-        <div class="big" id="analysisLoadingText"></div>
-
-        <div class="progress-container">
-
-            <div class="progress-bar" id="analysisBar"></div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- RESULTADO ANALISIS -->
-
-<section class="screen emotional hidden"
-id="analysisResultScreen">
-
-    <div class="overlay"></div>
-
-    <div class="content">
-
-        <img
-        src="https://c.tenor.com/YX0_j3GveucAAAAd/tenor.gif"
-        class="girl-gif">
-
-        <div class="big" id="analysisResultText"></div>
-
-        <br><br>
-
-        <button onclick="backMenu()">
-            VOLVER
-        </button>
-
-    </div>
-
-</section>
-
-<!-- FECHA -->
-
-<section class="screen emotional hidden"
-id="messageDateScreen">
-
-    <div class="overlay"></div>
-
-    <div class="content">
-
-        <div class="big">
-            Ingrese fecha:
-        </div>
-
-        <div class="input-box">
-
-            <input
-            type="text"
-            id="dateInput"
-            placeholder="14/05/2026">
-
-            <button onclick="checkDate()">
-                ABRIR
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- RESULTADO MENSAJE -->
-
-<section class="screen emotional hidden"
-id="messageResultScreen">
-
-    <div class="overlay"></div>
-
-    <div class="content">
-
-        <img
-        id="messageGif"
-        src=""
-        class="girl-gif">
-
-        <div class="big" id="messageText"></div>
-
-        <br><br>
-
-        <button onclick="backMenu()">
-            VOLVER
-        </button>
-
-    </div>
-
-</section>
-
 <script>
-
-/* TYPEWRITER */
 
 function typeWriter(id,text,speed=40){
 
@@ -717,8 +425,7 @@ function typeWriter(id,text,speed=40){
 
         }else{
 
-            element.innerHTML =
-            text;
+            element.innerHTML = text;
 
         }
 
@@ -727,8 +434,6 @@ function typeWriter(id,text,speed=40){
     typing();
 
 }
-
-/* CAMBIAR */
 
 function changeScreen(hide,show){
 
@@ -741,8 +446,6 @@ function changeScreen(hide,show){
     .classList.remove("hidden");
 
 }
-
-/* INTRO */
 
 window.onload = function(){
 
@@ -798,7 +501,7 @@ function checkName(){
 
         typeWriter(
             "confirmText",
-            "para confirmar tu identidad responde las siguientes preguntas.",
+            `para confirmar que eres ${value}, responde las siguientes preguntas.`,
             40
         );
 
@@ -813,611 +516,9 @@ function checkName(){
 
 }
 
-/* PREGUNTAS */
-
 function goQuestion1(){
 
-    changeScreen(
-        "screen3",
-        "screen4"
-    );
-
-    typeWriter(
-        "question1",
-        "¿Qué cosa en forma de osito adoptaste como mascota?",
-        40
-    );
-
-}
-
-function checkAnswer1(){
-
-    const value =
-    document
-    .getElementById("answer1")
-    .value
-    .toLowerCase()
-    .trim();
-
-    if(
-        value === "papa" ||
-        value === "papá"
-    ){
-
-        changeScreen(
-            "screen4",
-            "screen5"
-        );
-
-        typeWriter(
-            "question2",
-            "¿Cómo se llama tu mascota?",
-            40
-        );
-
-    }else{
-
-        document
-        .getElementById("error1")
-        .innerHTML =
-        "ERROR";
-
-    }
-
-}
-
-function checkAnswer2(){
-
-    const value =
-    document
-    .getElementById("answer2")
-    .value
-    .toLowerCase()
-    .trim();
-
-    if(value === "kimmy"){
-
-        changeScreen(
-            "screen5",
-            "screen6"
-        );
-
-        typeWriter(
-            "question3",
-            "Quiero llenarte de leche los...",
-            40
-        );
-
-    }else{
-
-        document
-        .getElementById("error2")
-        .innerHTML =
-        "ERROR";
-
-    }
-
-}
-
-function checkAnswer3(){
-
-    const value =
-    document
-    .getElementById("answer3")
-    .value
-    .toLowerCase()
-    .trim();
-
-    if(
-        value === "fideos" ||
-        value === "los fideos"
-    ){
-
-        enteringSequence();
-
-    }else{
-
-        document
-        .getElementById("error3")
-        .innerHTML =
-        "ERROR";
-
-    }
-
-}
-
-/* CARGA */
-
-function enteringSequence(){
-
-    changeScreen(
-        "screen6",
-        "loadingMenuScreen"
-    );
-
-    typeWriter(
-        "loadingMenuText",
-        "Iniciando sesión...",
-        50
-    );
-
-    const bar =
-    document.getElementById("progressBar");
-
-    let width = 0;
-
-    const interval = setInterval(()=>{
-
-        width += 2;
-
-        bar.style.width =
-        width + "%";
-
-        if(width >= 100){
-
-            clearInterval(interval);
-
-            setTimeout(()=>{
-                startErrors();
-            },1000);
-
-        }
-
-    },80);
-
-}
-
-/* ERRORES */
-
-let errors = 0;
-
-function startErrors(){
-
-    changeScreen(
-        "loadingMenuScreen",
-        "errorScreen"
-    );
-
-    spawnError();
-
-}
-
-function spawnError(){
-
-    const popup =
-    document.createElement("div");
-
-    popup.classList.add("popup");
-
-    popup.innerHTML = `
-        <div style="margin-bottom:20px;">
-            ERROR DEL SISTEMA
-        </div>
-
-        <button onclick="closeError(this)">
-            OK
-        </button>
-    `;
-
-    document
-    .getElementById("errorScreen")
-    .appendChild(popup);
-
-}
-
-function closeError(button){
-
-    button.parentElement.remove();
-
-    errors++;
-
-    if(errors < 7){
-
-        spawnError();
-
-    }else{
-
-        setTimeout(()=>{
-
-            changeScreen(
-                "errorScreen",
-                "crisisScreen"
-            );
-
-            typeWriter(
-                "crisisText",
-`⚠️ inicio de sesión de Alex detectado
-
-La interfaz debe actualizarse`,
-50
-            );
-
-        },500);
-
-    }
-
-}
-
-/* UPDATE */
-
-function updateSystem(){
-
-    changeScreen(
-        "crisisScreen",
-        "updatingScreen"
-    );
-
-    typeWriter(
-        "updatingText",
-        "actualizando sistema...",
-        50
-    );
-
-    const bar =
-    document.getElementById("updateBar");
-
-    let width = 0;
-
-    const interval = setInterval(()=>{
-
-        width += 2;
-
-        bar.style.width =
-        width + "%";
-
-        if(width >= 100){
-
-            clearInterval(interval);
-
-            activatePinkMode();
-
-        }
-
-    },80);
-
-}
-
-function activatePinkMode(){
-
-    const fondo =
-    "https://i.pinimg.com/originals/8f/8e/4d/8f8e4d4a9d0a7bbf1d8f0e0fd6d9a1f7.gif";
-
-    document.body.style.backgroundImage =
-    `url('${fondo}')`;
-
-    document.body.style.backgroundSize =
-    "cover";
-
-    document.querySelectorAll(".emotional")
-    .forEach(screen=>{
-
-        screen.style.backgroundImage =
-        `url('${fondo}')`;
-
-    });
-
-    createHearts();
-
-    setTimeout(()=>{
-
-        changeScreen(
-            "updatingScreen",
-            "girlScreen"
-        );
-
-        typeWriter(
-            "girlText",
-            "Bienvenido Alexin de mi amor*-*",
-            60
-        );
-
-        setTimeout(()=>{
-
-            changeScreen(
-                "girlScreen",
-                "menuScreen"
-            );
-
-        },5000);
-
-    },1000);
-
-}
-
-/* CORAZONES */
-
-function createHearts(){
-
-    for(let i=0;i<40;i++){
-
-        const heart =
-        document.createElement("div");
-
-        heart.classList.add("heart");
-
-        heart.innerHTML = "❤";
-
-        heart.style.left =
-        Math.random()*100 + "vw";
-
-        heart.style.fontSize =
-        (10 + Math.random()*25) + "px";
-
-        heart.style.animationDuration =
-        (5 + Math.random()*10) + "s";
-
-        document.body.appendChild(heart);
-
-    }
-
-}
-
-/* ANALISIS */
-
-const analysisSteps = [
-
-`[0%] Iniciando análisis emocional...`,
-
-`[2%] Cargando recuerdos importantes...
-✔ Primeras conversaciones encontradas
-✔ Cosas que le gustan a Alex encontradas
-✔ Datos randoms sobre Alex encontrados`,
-
-`[6%] Escaneando interacciones diarias...
-✔ Mensajes
-✔ Juegos
-✔ Llamadas...`,
-
-`[11%] Analizando llamadas nocturnas...
-✔ Compartir que hicieron en sus día
-✔ Decirse cuanto se aman`,
-
-`[15%] Detectando efectos de su voz...
-✔ Tranquilidad inmediata encontrada
-✔ Disminucion de niveles de ansiedad al escucharlo`,
-
-`[21%] Escaneando emociones actuales...
-✔ La usuaria se siente amada
-✔ La usuaria se siente respetada
-✔ La usuaria se siente comprendida
-✔ La usuaria se siente escuchada`,
-
-`[29%] Revisando actividad emocional reciente...
-✔ Sonrisas involuntarias registradas después de cada llamada
-
->Tiempo compartido genera felicidad`,
-
-`[34%] Detectando muestras de cariño...
-✔ Besos enviados correctamente recibidos
-✔Palabras y frases de amor correctamente atesoradas
-✔ Reacción emocional positiva extremadamente alta`,
-
-`[40%] Escaneando galería emocional...
-✔ Fotos de su carita encontradas
-✔Videos de Besos encontrados
-
-> El sistema detectó ternura excesiva`,
-
-`[48%] Analizando percepción del sujeto...
-Resultado encontrado:
-“hermoso”
-“wonito”
-“tierno”
-"Bondadoso"
-“amoroso”
-"Compañero"
-"Inteligente"
-"Empatico"
-"Admirable"
-"Cariñoso"
-"Único"
-"Especial"
-“Perfecto”
-"Inigualable"`,
-
-`[56%] Escaneando recuerdos antes de dormir...
-✔ Canciones para mimir detectadas
-> La usuaria se duerme sonriendo frecuentemente`,
-
-`[64%] Analizando dependencia afectiva...
-✔ Necesidad frecuente de escuchar su voz encontrada
-✔ Pensamientos constantes detectados`,
-
-`[72%] Nivel de enamoramiento ...
->En aumento constante`,
-
-`[81%] Detectando amenazas...
-⚠ Distancia física presente
-
-Estado:
-No afecta la conexión emocional`,
-
-`[89%] Ejecutando revisión final...
-✔ Relación estable emocionalmente
-✔ Niveles altos de cariño y confianza`,
-
-`[96%] Preparando resultado...`,
-
-`[100%] ANÁLISIS COMPLETADO`
-
-];
-
-function openAnalysis(){
-
-    changeScreen(
-        "menuScreen",
-        "analysisLoadingScreen"
-    );
-
-    const text =
-    document.getElementById("analysisLoadingText");
-
-    const bar =
-    document.getElementById("analysisBar");
-
-    let current = 0;
-
-    function nextStep(){
-
-        if(current >= analysisSteps.length){
-
-            setTimeout(()=>{
-
-                changeScreen(
-                    "analysisLoadingScreen",
-                    "analysisResultScreen"
-                );
-
-                typeWriter(
-                    "analysisResultText",
-`RESULTADO FINAL:
-
-Después de analizar emociones, llamadas, recuerdos y pensamientos constantes, el sistema concluye que esta persona se convirtió en uno de los lugares más seguros, felices y importantes para la usuaria.
-
-No se encontraron errores.
-Solo amor.`,
-25
-                );
-
-            },1000);
-
-            return;
-
-        }
-
-        const content =
-        analysisSteps[current];
-
-        text.innerHTML = "";
-
-        let i = 0;
-
-        function write(){
-
-            if(i < content.length){
-
-                text.innerHTML =
-                content.substring(0,i+1) +
-                '<span class="cursor">█</span>';
-
-                i++;
-
-                setTimeout(write,15);
-
-            }else{
-
-                const percent =
-                parseInt(
-                    content.match(/\[(\d+)%\]/)?.[1] || 0
-                );
-
-                bar.style.width =
-                percent + "%";
-
-                current++;
-
-                setTimeout(nextStep,4500);
-
-            }
-
-        }
-
-        write();
-
-    }
-
-    nextStep();
-
-}
-
-/* MENSAJE */
-
-function openMessage(){
-
-    changeScreen(
-        "menuScreen",
-        "messageDateScreen"
-    );
-
-}
-
-function checkDate(){
-
-    const value =
-    document
-    .getElementById("dateInput")
-    .value
-    .trim();
-
-    const randomMessages = [
-
-        "Hola Alexinlin de mi amor, tomaste awita?",
-
-        "Te amo mucho, me amas?",
-
-        "Me tañias? Yo te tanio?"
-
-    ];
-
-    let finalText = "";
-    let finalGif = "";
-
-    if(value === "14/05/2026"){
-
-        finalText =
-`Felices 3 meses mi amor!
-Gracias por ser mi novio♡`;
-
-        finalGif =
-"https://64.media.tumblr.com/be0cf900f283ad29b2d0a1f44c52a821/6a9c8986f837ff55-05/s400x600/c0a31febc663585b8baef79e7250c0d130350373.gif";
-
-    }else{
-
-        finalText =
-        randomMessages[
-            Math.floor(
-                Math.random() *
-                randomMessages.length
-            )
-        ];
-
-        finalGif =
-"https://media.tenor.com/owSXAc8yVpAAAAAj/milk-and-mocha-kiss-cheek.gif";
-
-    }
-
-    document
-    .getElementById("messageGif")
-    .src = finalGif;
-
-    changeScreen(
-        "messageDateScreen",
-        "messageResultScreen"
-    );
-
-    typeWriter(
-        "messageText",
-        finalText,
-        40
-    );
-
-}
-
-/* VOLVER */
-
-function backMenu(){
-
-    document
-    .querySelectorAll(".emotional")
-    .forEach(screen=>{
-
-        screen.classList.add("hidden");
-
-    });
-
-    document
-    .getElementById("menuScreen")
-    .classList.remove("hidden");
+    alert("ACÁ SIGUE EL RESTO DEL CÓDIGO");
 
 }
 
