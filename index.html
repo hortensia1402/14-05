@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Sistema Operativo Hortensia</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -28,7 +30,8 @@ body::after{
 content:"";
 position:fixed;
 inset:0;
-background:repeating-linear-gradient(
+background:
+repeating-linear-gradient(
 to bottom,
 rgba(255,255,255,0.03),
 rgba(255,255,255,0.03) 1px,
@@ -208,12 +211,17 @@ opacity:0.5;
 }
 
 @keyframes float{
-from{transform:translateY(100vh);}
-to{transform:translateY(-120vh);}
+from{
+transform:translateY(100vh);
+}
+to{
+transform:translateY(-120vh);
+}
 }
 
 </style>
 </head>
+
 <body>
 
 <section class="screen" id="screen1">
@@ -221,127 +229,260 @@ to{transform:translateY(-120vh);}
 </section>
 
 <section class="screen hidden" id="screen2">
+
 <div class="typing" id="identifyText"></div>
+
 <div class="input-box">
-<input type="text" id="nameInput" placeholder="NOMBRE">
-<button onclick="checkName()">CONTINUAR</button>
+
+<input
+type="text"
+id="nameInput"
+placeholder="NOMBRE">
+
+<button onclick="checkName()">
+CONTINUAR
+</button>
+
 <div class="error" id="nameError"></div>
+
 </div>
+
 </section>
 
 <section class="screen hidden" id="screen3">
+
 <div class="typing" id="confirmText"></div>
+
 <br><br>
-<button onclick="goQuestion1()">CONTINUAR</button>
+
+<button onclick="goQuestion1()">
+CONTINUAR
+</button>
+
 </section>
 
 <section class="screen hidden" id="screen4">
+
 <div class="typing" id="question1"></div>
+
 <div class="input-box">
+
 <input type="text" id="answer1">
-<button onclick="checkAnswer1()">CONFIRMAR</button>
+
+<button onclick="checkAnswer1()">
+CONFIRMAR
+</button>
+
 <div class="error" id="error1"></div>
+
 </div>
+
 </section>
 
 <section class="screen hidden" id="screen5">
+
 <div class="typing" id="question2"></div>
+
 <div class="input-box">
+
 <input type="text" id="answer2">
-<button onclick="checkAnswer2()">CONFIRMAR</button>
+
+<button onclick="checkAnswer2()">
+CONFIRMAR
+</button>
+
 <div class="error" id="error2"></div>
+
 </div>
+
 </section>
 
 <section class="screen hidden" id="screen6">
+
 <div class="typing" id="question3"></div>
+
 <div class="input-box">
+
 <input type="text" id="answer3">
-<button onclick="checkAnswer3()">CONFIRMAR</button>
+
+<button onclick="checkAnswer3()">
+CONFIRMAR
+</button>
+
 <div class="error" id="error3"></div>
+
 </div>
+
 </section>
 
 <section class="screen hidden" id="loadingMenuScreen">
+
 <div class="typing" id="loadingMenuText"></div>
+
 <div class="progress-container">
 <div class="progress-bar" id="progressBar"></div>
 </div>
+
 </section>
 
 <section class="screen hidden" id="errorScreen"></section>
 
 <section class="screen hidden" id="crisisScreen">
+
 <div class="typing" id="crisisText"></div>
+
 <br><br>
-<button onclick="updateSystem()">ACTUALIZAR</button>
+
+<button onclick="updateSystem()">
+ACTUALIZAR
+</button>
+
 </section>
 
-<section class="screen hidden" id="updatingScreen">
+<section class="screen hidden emotional" id="updatingScreen">
+
+<div class="overlay"></div>
+
+<div class="content">
+
 <div class="typing" id="updatingText"></div>
+
 <div class="progress-container">
 <div class="progress-bar" id="updateBar"></div>
 </div>
+
+</div>
+
 </section>
 
 <section class="screen emotional hidden" id="girlScreen">
+
 <div class="overlay"></div>
+
 <div class="content">
-<img src="https://media.tenor.com/owSXAc8yVpAAAAAj/milk-and-mocha-kiss-cheek.gif" class="girl-gif">
+
+<img
+src="https://media.tenor.com/owSXAc8yVpAAAAAj/milk-and-mocha-kiss-cheek.gif"
+class="girl-gif">
+
 <div class="big" id="girlText"></div>
+
 </div>
+
 </section>
 
 <section class="screen emotional hidden" id="menuScreen">
+
 <div class="overlay"></div>
+
 <div class="content">
-<div class="cute-title">Espacio de novio</div>
+
+<div class="cute-title">
+Espacio de novio
+</div>
+
 <div class="cute-menu">
-<div class="cute-item" onclick="openAnalysis()">Analisis de sentimientos</div>
-<div class="cute-item" onclick="openMessage()">Mensaje para hoy</div>
+
+<div class="cute-item" onclick="openAnalysis()">
+Analisis de sentimientos
 </div>
+
+<div class="cute-item" onclick="openMessage()">
+Mensaje para hoy
 </div>
+
+</div>
+
+</div>
+
 </section>
 
 <section class="screen emotional hidden" id="analysisLoadingScreen">
+
 <div class="overlay"></div>
+
 <div class="content">
+
 <div class="big" id="analysisLoadingText"></div>
+
 <div class="progress-container">
 <div class="progress-bar" id="analysisBar"></div>
 </div>
+
 </div>
+
 </section>
 
 <section class="screen emotional hidden" id="analysisResultScreen">
+
 <div class="overlay"></div>
+
 <div class="content">
-<img src="https://c.tenor.com/YX0_j3GveucAAAAd/tenor.gif" class="girl-gif">
+
+<img
+src="https://c.tenor.com/YX0_j3GveucAAAAd/tenor.gif"
+class="girl-gif">
+
 <div class="big" id="analysisResultText"></div>
+
 <br><br>
-<button onclick="backMenu()">VOLVER</button>
+
+<button onclick="backMenu()">
+VOLVER
+</button>
+
 </div>
+
 </section>
 
 <section class="screen emotional hidden" id="messageDateScreen">
+
 <div class="overlay"></div>
+
 <div class="content">
-<div class="big">Ingrese fecha:</div>
+
+<div class="big">
+Ingrese fecha:
+</div>
+
 <div class="input-box">
-<input type="text" id="dateInput" placeholder="14/05/2026">
-<button onclick="checkDate()">ABRIR</button>
+
+<input
+type="text"
+id="dateInput"
+placeholder="14/05/2026">
+
+<button onclick="checkDate()">
+ABRIR
+</button>
+
 </div>
+
 </div>
+
 </section>
 
 <section class="screen emotional hidden" id="messageResultScreen">
+
 <div class="overlay"></div>
+
 <div class="content">
-<img id="messageGif" src="" class="girl-gif">
+
+<img
+id="messageGif"
+src=""
+class="girl-gif">
+
 <div class="big" id="messageText"></div>
+
 <br><br>
-<button onclick="backMenu()">VOLVER</button>
+
+<button onclick="backMenu()">
+VOLVER
+</button>
+
 </div>
+
 </section>
 
 <script>
@@ -349,131 +490,309 @@ to{transform:translateY(-120vh);}
 let userName = "Alex";
 let errors = 0;
 
+/* TYPEWRITER */
+
 function typeWriter(id,text,speed=40){
-const element = document.getElementById(id);
+
+const element =
+document.getElementById(id);
+
 element.innerHTML = "";
+
 let i = 0;
 
 function typing(){
+
 if(i < text.length){
-element.innerHTML = text.substring(0,i+1) + '<span class="cursor">█</span>';
+
+element.innerHTML =
+text.substring(0,i+1) +
+'<span class="cursor">█</span>';
+
 i++;
+
 setTimeout(typing,speed);
+
 }else{
+
 element.innerHTML = text;
+
 }
+
 }
 
 typing();
+
 }
 
+/* CAMBIAR PANTALLA */
+
 function changeScreen(hide,show){
-document.getElementById(hide).classList.add("hidden");
-document.getElementById(show).classList.remove("hidden");
+
+document
+.getElementById(hide)
+.classList.add("hidden");
+
+document
+.getElementById(show)
+.classList.remove("hidden");
+
 }
+
+/* INICIO */
 
 window.onload = function(){
 
- typeWriter(
- "introText",
- `hola
+typeWriter(
+"introText",
+`hola
 
 bienvenido al sistema operativo de Hortensia`,
- 70
- );
+70
+);
 
- setTimeout(()=>{
- changeScreen("screen1","screen2");
- typeWriter("identifyText","por favor identificate.",50);
- },6000);
+setTimeout(()=>{
+
+changeScreen(
+"screen1",
+"screen2"
+);
+
+typeWriter(
+"identifyText",
+"por favor identificate.",
+50
+);
+
+},6000);
+
 }
+
+/* LOGIN */
 
 function checkName(){
 
-const value = document.getElementById("nameInput").value.toLowerCase().trim();
+const value =
+document
+.getElementById("nameInput")
+.value
+.toLowerCase()
+.trim();
 
-const names = ["alex","alexin","anto","antorchita"];
+const names = [
+"alex",
+"alexin",
+"anto",
+"antorchita"
+];
 
 if(names.includes(value)){
 
 userName = value;
 
-changeScreen("screen2","screen3");
+changeScreen(
+"screen2",
+"screen3"
+);
 
- typeWriter(
- "confirmText",
- `para confirmar que eres ${value}, responde las siguientes preguntas.`,
- 40
- );
+typeWriter(
+"confirmText",
+`para confirmar que eres ${value}, responde las siguientes preguntas.`,
+40
+);
 
 }else{
- document.getElementById("nameError").innerHTML = "ERROR: usuario no identificado";
-}
+
+document
+.getElementById("nameError")
+.innerHTML =
+"ERROR: usuario no identificado";
+
 }
 
+}
+
+/* PREGUNTA 1 */
+
 function goQuestion1(){
-changeScreen("screen3","screen4");
-typeWriter("question1","¿Qué cosa en forma de osito adoptaste como mascota?",40);
+
+changeScreen(
+"screen3",
+"screen4"
+);
+
+typeWriter(
+"question1",
+"¿Qué cosa en forma de osito adoptaste como mascota?",
+40
+);
+
 }
 
 function checkAnswer1(){
-const value = document.getElementById("answer1").value.toLowerCase().trim();
 
-if(value === "papa" || value === "papá"){
-changeScreen("screen4","screen5");
-typeWriter("question2","¿Cómo se llama tu mascota?",40);
+const value =
+document
+.getElementById("answer1")
+.value
+.toLowerCase()
+.trim();
+
+if(
+
+value === "papa" ||
+value === "papá" ||
+value === "una papa"
+
+){
+
+changeScreen(
+"screen4",
+"screen5"
+);
+
+typeWriter(
+"question2",
+"¿Cómo se llama tu mascota?",
+40
+);
+
 }else{
-document.getElementById("error1").innerHTML = "ERROR";
+
+document
+.getElementById("error1")
+.innerHTML =
+"ERROR";
+
 }
+
 }
+
+/* PREGUNTA 2 */
 
 function checkAnswer2(){
-const value = document.getElementById("answer2").value.toLowerCase().trim();
+
+const value =
+document
+.getElementById("answer2")
+.value
+.toLowerCase()
+.trim();
 
 if(value === "kimmy"){
-changeScreen("screen5","screen6");
-typeWriter("question3","Quiero llenarte de leche los...",40);
+
+changeScreen(
+"screen5",
+"screen6"
+);
+
+typeWriter(
+"question3",
+"Quiero llenarte de leche los...",
+40
+);
+
 }else{
-document.getElementById("error2").innerHTML = "ERROR";
+
+document
+.getElementById("error2")
+.innerHTML =
+"ERROR";
+
 }
+
 }
+
+/* PREGUNTA 3 */
 
 function checkAnswer3(){
-const value = document.getElementById("answer3").value.toLowerCase().trim();
 
-if(value === "fideos" || value === "los fideos"){
+const value =
+document
+.getElementById("answer3")
+.value
+.toLowerCase()
+.trim();
+
+if(
+value === "fideos" ||
+value === "los fideos"
+){
+
 enteringSequence();
+
 }else{
-document.getElementById("error3").innerHTML = "ERROR";
+
+document
+.getElementById("error3")
+.innerHTML =
+"ERROR";
+
 }
+
 }
+
+/* CARGANDO */
 
 function enteringSequence(){
-changeScreen("screen6","loadingMenuScreen");
-typeWriter("loadingMenuText","Iniciando sesión...",50);
 
-const bar = document.getElementById("progressBar");
+changeScreen(
+"screen6",
+"loadingMenuScreen"
+);
+
+typeWriter(
+"loadingMenuText",
+"Iniciando sesión...",
+50
+);
+
+const bar =
+document.getElementById("progressBar");
+
+bar.style.width = "0%";
+
 let width = 0;
 
 const interval = setInterval(()=>{
+
 width += 2;
-bar.style.width = width + "%";
+
+bar.style.width =
+width + "%";
 
 if(width >= 100){
+
 clearInterval(interval);
-setTimeout(()=>{startErrors();},1000);
-}
-},80);
+
+setTimeout(()=>{
+startErrors();
+},1000);
+
 }
 
+},80);
+
+}
+
+/* ERRORES */
+
 function startErrors(){
-changeScreen("loadingMenuScreen","errorScreen");
+
+changeScreen(
+"loadingMenuScreen",
+"errorScreen"
+);
+
 spawnError();
+
 }
 
 function spawnError(){
 
-const popup = document.createElement("div");
+const popup =
+document.createElement("div");
+
 popup.classList.add("popup");
 
 popup.innerHTML = `
@@ -486,35 +805,61 @@ OK
 </button>
 `;
 
-document.getElementById("errorScreen").appendChild(popup);
+document
+.getElementById("errorScreen")
+.appendChild(popup);
+
 }
 
 function closeError(button){
 
 button.parentElement.remove();
+
 errors++;
 
 if(errors < 7){
 
-changeScreen("errorScreen","loadingMenuScreen");
+changeScreen(
+"errorScreen",
+"loadingMenuScreen"
+);
 
-document.getElementById("progressBar").style.width = "0%";
+document
+.getElementById("progressBar")
+.style.width = "0%";
 
-typeWriter("loadingMenuText","Iniciando sesión...",40);
+typeWriter(
+"loadingMenuText",
+"Iniciando sesión...",
+40
+);
 
 let width = 0;
 
 const interval = setInterval(()=>{
+
 width += 10;
-document.getElementById("progressBar").style.width = width + "%";
+
+document
+.getElementById("progressBar")
+.style.width =
+width + "%";
 
 if(width >= 100){
+
 clearInterval(interval);
 
 setTimeout(()=>{
-changeScreen("loadingMenuScreen","errorScreen");
+
+changeScreen(
+"loadingMenuScreen",
+"errorScreen"
+);
+
 spawnError();
+
 },700);
+
 }
 
 },60);
@@ -522,87 +867,267 @@ spawnError();
 }else{
 
 setTimeout(()=>{
-changeScreen("errorScreen","crisisScreen");
 
- typeWriter(
- "crisisText",
- `⚠️ inicio de sesión de ${userName} detectado
+changeScreen(
+"errorScreen",
+"crisisScreen"
+);
+
+typeWriter(
+"crisisText",
+`⚠️ inicio de sesión de ${userName} detectado
 
 La interfaz debe actualizarse`,
- 50
- );
+50
+);
 
 },500);
+
 }
+
 }
+
+/* ACTUALIZAR */
 
 function updateSystem(){
 
-changeScreen("crisisScreen","updatingScreen");
+changeScreen(
+"crisisScreen",
+"updatingScreen"
+);
 
-typeWriter("updatingText","actualizando sistema...",50);
+document.querySelector(
+"#updatingScreen .progress-container"
+).style.display = "block";
 
-const bar = document.getElementById("updateBar");
+typeWriter(
+"updatingText",
+"actualizando sistema...",
+50
+);
+
+const bar =
+document.getElementById("updateBar");
+
+bar.style.width = "0%";
+
 let width = 0;
 
 const interval = setInterval(()=>{
+
 width += 2;
-bar.style.width = width + "%";
+
+bar.style.width =
+width + "%";
 
 if(width >= 100){
+
 clearInterval(interval);
 
-const fondo = "https://media1.tenor.com/m/F5sQ-3KwDIMAAAAC/powerpuff-girls-aesthetic-hearts.gif";
+const fondo =
+"https://media1.tenor.com/m/F5sQ-3KwDIMAAAAC/powerpuff-girls-aesthetic-hearts.gif";
 
-document.body.style.backgroundImage = `url('${fondo}')`;
-document.body.style.backgroundSize = "cover";
-document.body.style.backgroundPosition = "center";
+document.body.style.backgroundImage =
+`url('${fondo}')`;
+
+document.body.style.backgroundSize =
+"cover";
+
+document.body.style.backgroundPosition =
+"center";
+
+document.body.style.backgroundRepeat =
+"no-repeat";
 
 document.querySelectorAll(".emotional")
 .forEach(screen=>{
-screen.style.backgroundImage = `url('${fondo}')`;
+
+screen.style.backgroundImage =
+`url('${fondo}')`;
+
 });
 
-setTimeout(()=>{
-changeScreen("updatingScreen","girlScreen");
+/* OCULTAR TEXTO */
 
-typeWriter("girlText","Bienvenido Alexin de mi amor*-*",60);
+document.getElementById(
+"updatingText"
+).innerHTML = "";
+
+document.querySelector(
+"#updatingScreen .progress-container"
+).style.display = "none";
+
+/* SOLO FONDO */
 
 setTimeout(()=>{
-changeScreen("girlScreen","menuScreen");
+
+changeScreen(
+"updatingScreen",
+"girlScreen"
+);
+
+typeWriter(
+"girlText",
+"Bienvenido Alexin de mi amor*-*",
+60
+);
+
+setTimeout(()=>{
+
+changeScreen(
+"girlScreen",
+"menuScreen"
+);
+
 createHearts();
+
 },5000);
 
 },1000);
+
 }
+
 },80);
+
 }
+
+/* CORAZONES */
 
 function createHearts(){
+
 for(let i=0;i<35;i++){
-const heart = document.createElement("div");
+
+const heart =
+document.createElement("div");
+
 heart.classList.add("heart");
+
 heart.innerHTML = "❤";
-heart.style.left = Math.random()*100 + "vw";
-heart.style.fontSize = (10 + Math.random()*25) + "px";
-heart.style.animationDuration = (5 + Math.random()*10) + "s";
+
+heart.style.left =
+Math.random()*100 + "vw";
+
+heart.style.fontSize =
+(10 + Math.random()*25) + "px";
+
+heart.style.animationDuration =
+(5 + Math.random()*10) + "s";
+
 document.body.appendChild(heart);
-}
+
 }
 
+}
+
+/* ANALISIS */
+
 const analysisSteps = [
+
 `[0%] Iniciando análisis emocional...`,
-`[21%] Escaneando emociones actuales...\n✔ La usuaria se siente amada\n✔ La usuaria se siente respetada`,
-`[48%] Analizando percepción del sujeto...\n“hermoso”\n“tierno”\n“amoroso”`,
-`[72%] Nivel de enamoramiento ...\n>En aumento constante`,
+
+`[2%] Cargando recuerdos importantes...
+✔ Primeras conversaciones encontradas
+✔ Cosas que le gustan a Alex encontradas
+✔ Datos randoms sobre Alex encontrados`,
+
+`[6%] Escaneando interacciones diarias...
+✔ Mensajes
+✔ Juegos
+✔ Llamadas...`,
+
+`[11%] Analizando llamadas nocturnas...
+✔ Compartir que hicieron en sus día
+✔ Decirse cuanto se aman`,
+
+`[15%] Detectando efectos de su voz...
+✔ Tranquilidad inmediata encontrada
+✔ Disminucion de niveles de ansiedad al escucharlo`,
+
+`[21%] Escaneando emociones actuales...
+✔ La usuaria se siente amada
+✔ La usuaria se siente respetada
+✔ La usuaria se siente comprendida
+✔ La usuaria se siente escuchada`,
+
+`[29%] Revisando actividad emocional reciente...
+✔ Sonrisas involuntarias registradas después de cada llamada
+
+> Tiempo compartido genera felicidad`,
+
+`[34%] Detectando muestras de cariño...
+✔ Besos enviados correctamente recibidos
+✔ Palabras y frases de amor correctamente atesoradas
+✔ Reacción emocional positiva extremadamente alta`,
+
+`[40%] Escaneando galería emocional...
+✔ Fotos de su carita encontradas
+✔ Videos de besos encontrados
+
+> El sistema detectó ternura excesiva`,
+
+`[48%] Analizando percepción del sujeto...
+Resultado encontrado:
+
+“hermoso”
+“wonito”
+“tierno”
+“Bondadoso”
+“amoroso”
+“Compañero”
+“Inteligente”
+“Empatico”
+“Admirable”
+“Cariñoso”
+“Único”
+“Especial”
+“Perfecto”
+“Inigualable”`,
+
+`[56%] Escaneando recuerdos antes de dormir...
+✔ Canciones para mimir detectadas
+
+> La usuaria se duerme sonriendo frecuentemente`,
+
+`[64%] Analizando dependencia afectiva...
+✔ Necesidad frecuente de escuchar su voz encontrada
+✔ Pensamientos constantes detectados`,
+
+`[72%] Nivel de enamoramiento ...
+
+> En aumento constante`,
+
+`[81%] Detectando amenazas...
+⚠ Distancia física presente
+
+Estado:
+No afecta la conexión emocional`,
+
+`[89%] Ejecutando revisión final...
+✔ Relación estable emocionalmente
+✔ Niveles altos de cariño y confianza`,
+
+`[96%] Preparando resultado...`,
+
 `[100%] ANÁLISIS COMPLETADO`
+
 ];
 
 function openAnalysis(){
-changeScreen("menuScreen","analysisLoadingScreen");
 
-const text = document.getElementById("analysisLoadingText");
-const bar = document.getElementById("analysisBar");
+changeScreen(
+"menuScreen",
+"analysisLoadingScreen"
+);
+
+const text =
+document.getElementById(
+"analysisLoadingText"
+);
+
+const bar =
+document.getElementById(
+"analysisBar"
+);
 
 let current = 0;
 
@@ -611,56 +1136,106 @@ function nextStep(){
 if(current >= analysisSteps.length){
 
 setTimeout(()=>{
-changeScreen("analysisLoadingScreen","analysisResultScreen");
+
+changeScreen(
+"analysisLoadingScreen",
+"analysisResultScreen"
+);
 
 typeWriter(
 "analysisResultText",
-`RESULTADO FINAL:\n\nDespués de analizar emociones, llamadas, recuerdos y pensamientos constantes, el sistema concluye que esta persona se convirtió en uno de los lugares más seguros, felices y importantes para la usuaria.\n\nNo se encontraron errores.\nSolo amor.`,
-25
+
+`RESULTADO FINAL:
+
+Después de analizar emociones, llamadas, recuerdos y pensamientos constantes, el sistema concluye que esta persona se convirtió en uno de los lugares más seguros, felices y importantes para la usuaria.
+
+No se encontraron errores.
+Solo amor.`,
+
+20
 );
 
 },1000);
 
 return;
+
 }
 
-const content = analysisSteps[current];
+const content =
+analysisSteps[current];
+
 text.innerHTML = "";
 
 let i = 0;
 
 function write(){
+
 if(i < content.length){
-text.innerHTML = content.substring(0,i+1) + '<span class="cursor">█</span>';
+
+text.innerHTML =
+content.substring(0,i+1) +
+'<span class="cursor">█</span>';
+
 i++;
+
 setTimeout(write,15);
+
 }else{
 
-const percent = parseInt(content.match(/\[(\d+)%\]/)?.[1] || 0);
-bar.style.width = percent + "%";
+const percent =
+parseInt(
+content.match(/\[(\d+)%\]/)?.[1] || 0
+);
+
+bar.style.width =
+percent + "%";
+
 current++;
-setTimeout(nextStep,3500);
+
+setTimeout(
+nextStep,
+5000
+);
+
 }
+
 }
 
 write();
+
 }
 
 nextStep();
+
 }
 
+/* MENSAJE */
+
 function openMessage(){
-changeScreen("menuScreen","messageDateScreen");
+
+changeScreen(
+"menuScreen",
+"messageDateScreen"
+);
+
 }
 
 function checkDate(){
 
-const value = document.getElementById("dateInput").value.trim();
+const value =
+document
+.getElementById("dateInput")
+.value
+.trim();
 
 const randomMessages = [
+
 "Hola Alexinlin de mi amor, tomaste awita?",
+
 "Te amo mucho, me amas?",
+
 "Me tañias? Yo te tanio?"
+
 ];
 
 let finalText = "";
@@ -668,41 +1243,72 @@ let finalGif = "";
 
 if(value === "14/05/2026"){
 
-finalText = `Felices 3 meses mi amor!\nGracias por ser mi novio♡`;
+finalText =
+`Felices 3 meses mi amor!
+Gracias por ser mi novio♡`;
 
-finalGif = "https://64.media.tumblr.com/be0cf900f283ad29b2d0a1f44c52a821/6a9c8986f837ff55-05/s400x600/c0a31febc663585b8baef79e7250c0d130350373.gif";
+finalGif =
+"https://64.media.tumblr.com/be0cf900f283ad29b2d0a1f44c52a821/6a9c8986f837ff55-05/s400x600/c0a31febc663585b8baef79e7250c0d130350373.gif";
 
 }else{
 
-finalText = randomMessages[Math.floor(Math.random()*randomMessages.length)];
+finalText =
+randomMessages[
+Math.floor(
+Math.random()*randomMessages.length
+)
+];
 
-finalGif = "https://media.tenor.com/owSXAc8yVpAAAAAj/milk-and-mocha-kiss-cheek.gif";
+finalGif =
+"https://media.tenor.com/owSXAc8yVpAAAAAj/milk-and-mocha-kiss-cheek.gif";
+
 }
 
-document.getElementById("messageGif").src = finalGif;
+document.getElementById(
+"messageGif"
+).src = finalGif;
 
-changeScreen("messageDateScreen","messageResultScreen");
+changeScreen(
+"messageDateScreen",
+"messageResultScreen"
+);
 
-typeWriter("messageText",finalText,40);
+typeWriter(
+"messageText",
+finalText,
+40
+);
+
 }
+
+/* VOLVER */
 
 function backMenu(){
 
-const emotionalScreens = [
+const screens = [
+
 "analysisLoadingScreen",
 "analysisResultScreen",
 "messageDateScreen",
 "messageResultScreen"
+
 ];
 
-emotionalScreens.forEach(id=>{
-document.getElementById(id).classList.add("hidden");
+screens.forEach(id=>{
+
+document
+.getElementById(id)
+.classList.add("hidden");
+
 });
 
-document.getElementById("menuScreen").classList.remove("hidden");
+document
+.getElementById("menuScreen")
+.classList.remove("hidden");
+
 }
 
 </script>
 
 </body>
-</html>
+ </html>
