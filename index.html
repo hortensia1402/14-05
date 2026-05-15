@@ -150,14 +150,14 @@ background:rgba(0,0,0,0.3);
 } 
 
 .emotional{
-background-image:url('https://media1.tenor.com/m/F5sQ-3KwDIMAAAAC/powerpuff-girls-aesthetic-hearts.gif');
+background:black;
 background-size:cover;
 background-position:center center;
 background-repeat:no-repeat;
 width:100vw;
 height:100vh;
 overflow:hidden;
-} 
+}
 
 #girlScreen,
 #menuScreen,
@@ -711,7 +711,8 @@ const analysisSteps = [
 `[11%] Analizando llamadas nocturnas... 
 
 ✔ Compartir que hicieron en sus día
-✔ Decirse cuanto se aman`, 
+✔ Decirse cuanto se aman
+✔Dormir en llamada`, 
 
 `[15%] Detectando efectos de su voz... 
 
@@ -720,14 +721,15 @@ const analysisSteps = [
 
 `[21%] Escaneando emociones actuales... 
 
-✔ La usuaria se siente amada
-✔ La usuaria se siente respetada
-✔ La usuaria se siente comprendida
-✔ La usuaria se siente escuchada`, 
+✔ Hortensia siente amada
+✔ Hortensia se siente respetada
+✔ Hortensia se siente comprendida
+✔ Hortensia se siente escuchada
+✔Hortensia se siente afortunada por conocer a Alex`, 
 
 `[29%] Revisando actividad emocional reciente... 
 
-✔ Sonrisas involuntarias registradas después de cada llamada 
+✔ Sonrisas involuntarias registradas después de cada interacción 
 
 > Tiempo compartido genera felicidad`, 
 
@@ -740,34 +742,35 @@ const analysisSteps = [
 `[40%] Escaneando galería emocional... 
 
 ✔ Fotos de su carita encontradas
-✔ Videos de Besos encontrados 
+✔ Videos de Besos encontrados
+✔ Audios de Alex encontrados 
 
 > El sistema detectó ternura excesiva`, 
 
-`[48%] Analizando percepción del sujeto... 
+`[48%] Analizando percepción de Alex... 
 
 Resultado encontrado: 
 
-“hermoso”
-“wonito”
-“tierno”
-“Bondadoso”
-“amoroso”
-“Compañero”
-“Inteligente”
-“Empatico”
-“Admirable”
-“Cariñoso”
-“Único”
-“Especial”
-“Perfecto”
-“Inigualable”`, 
+♡hermoso♡
+♡wonito♡
+♡tierno♡
+♡bondadoso♡
+♡amoroso♡
+♡compañero♡
+♡inteligente♡
+♡empatico♡
+♡admirable♡
+♡cariñoso♡
+♡único♡
+♡especial♡
+♡perfecto♡
+♡inigualable♡`, 
 
 `[56%] Escaneando recuerdos antes de dormir... 
 
 ✔ Canciones para mimir detectadas 
 
-> La usuaria se duerme sonriendo frecuentemente`, 
+> Hortensia se duerme sonriendo frecuentemente`, 
 
 `[64%] Analizando dependencia afectiva... 
 
@@ -821,10 +824,10 @@ typeWriter(
 "analysisResultText",
 `RESULTADO FINAL: 
 
-Después de analizar emociones, llamadas, recuerdos y pensamientos constantes, el sistema concluye que esta persona se convirtió en uno de los lugares más seguros, felices y importantes para la usuaria. 
+Después de analizar emociones, llamadas, recuerdos y pensamientos constantes, el sistema concluye que esta persona se convirtió en uno de los lugares más seguros, felices y importantes para Hortensia. 
 
 No se encontraron errores.
-Solo amor.`,
+Solo amor amoroso y sincero.`,
 20
 ); 
 
@@ -889,7 +892,7 @@ let finalGif = "";
 
 if(value === "14/05/2026"){ 
 
-finalText = `Felices 3 meses mi amor!\nGracias por ser mi novio♡`; 
+finalText = `Felices 3 meses mi amor!\n Haces que mis días sean más wonitos*-* Gracias por ser mi novio! Te amo mucho♡`; 
 
 finalGif = "https://64.media.tumblr.com/be0cf900f283ad29b2d0a1f44c52a821/6a9c8986f837ff55-05/s400x600/c0a31febc663585b8baef79e7250c0d130350373.gif"; 
 
@@ -898,7 +901,7 @@ finalGif = "https://64.media.tumblr.com/be0cf900f283ad29b2d0a1f44c52a821/6a9c898
 const randomMessages = [
 "Hola Alexinlin de mi amor, tomaste awita?",
 "Te amo mucho, me amas?",
-"Me tañias? Yo te tanio?"
+"Me tanias? Yo te tanio?"
 ]; 
 
 finalText = randomMessages[Math.floor(Math.random()*randomMessages.length)]; 
