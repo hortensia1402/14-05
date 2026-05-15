@@ -654,15 +654,34 @@ changeScreen("girlScreen","menuScreen");
 
 /* CUTE MODE */ 
 
-function activateCuteMode(){ 
+function activateCuteMode(){
 
 document.body.style.backgroundImage = `url('${fondo}')`;
 document.body.style.backgroundSize = "cover";
 document.body.style.backgroundPosition = "center center";
-document.body.style.backgroundRepeat = "no-repeat"; 
+document.body.style.backgroundRepeat = "no-repeat";
 
-} 
+const cuteScreens = [
+"girlScreen",
+"menuScreen",
+"analysisLoadingScreen",
+"analysisResultScreen",
+"messageDateScreen",
+"messageResultScreen"
+];
 
+cuteScreens.forEach(id=>{
+
+const screen = document.getElementById(id);
+
+screen.style.backgroundImage = `url('${fondo}')`;
+screen.style.backgroundSize = "cover";
+screen.style.backgroundPosition = "center center";
+screen.style.backgroundRepeat = "no-repeat";
+
+});
+
+  }
 function createHearts(){
 for(let i=0;i<35;i++){ 
 
