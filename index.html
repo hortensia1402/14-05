@@ -144,11 +144,16 @@ background-repeat:no-repeat;
 }
 
 .girl-gif{
-width:100%;
-max-width:500px;
-border-radius:20px;
-margin-bottom:25px;
-box-shadow:0 0 30px rgba(255,255,255,0.5);
+width:100vw;
+height:100vh;
+object-fit:cover;
+position:absolute;
+top:0;
+left:0;
+z-index:1;
+border-radius:0;
+margin-bottom:0;
+box-shadow:none;
 }
 
 .big{
@@ -315,7 +320,13 @@ input{width:90%;font-size:0.7rem;}
 </section>
 
 <section class="screen emotional hidden" id="girlScreen">
+
+<img
+src="https://media.tenor.com/owSXAc8yVpAAAAAj/milk-and-mocha-kiss-cheek.gif"
+class="girl-gif">
+
 <div class="overlay"></div>
+
 <div class="content">
 <img src="https://media.tenor.com/owSXAc8yVpAAAAAj/milk-and-mocha-kiss-cheek.gif" class="girl-gif">
 <div class="big" id="girlText"></div>
@@ -581,9 +592,16 @@ girlScreen.classList.remove("hidden");
 
 girlScreen.style.backgroundImage = `url('${fondo}')`;
 
+const content = document.querySelector("#girlScreen .content");
+content.style.opacity = "0";
+content.style.transition = "1s";
+
 createHearts();
 
 setTimeout(()=>{
+
+const content = document.querySelector("#girlScreen .content");
+content.style.opacity = "1";
 
 typeWriter(
 "girlText",
@@ -591,7 +609,7 @@ typeWriter(
 60
 );
 
-},1000);
+},2500);
 
 setTimeout(()=>{
 changeScreen("girlScreen","menuScreen");
@@ -872,4 +890,4 @@ document.getElementById("menuScreen").classList.remove("hidden");
 </script>
 
 </body>
-</html>
+    </html>
